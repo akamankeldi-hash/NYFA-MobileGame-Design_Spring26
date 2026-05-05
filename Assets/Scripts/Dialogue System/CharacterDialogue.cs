@@ -21,17 +21,7 @@ public class CharacterDialogue : MonoBehaviour
     {
         animatedText = DialogueManager.instance.animatedText;
     }
-
-    void Update()
-    {
-        
-    }
     
-    public void Reset()
-    {
-        
-    }
-
     public CharacterData GetCharacterData()
     {
         return characterData;

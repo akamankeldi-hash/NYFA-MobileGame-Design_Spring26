@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Mono.Cecil;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Image nameBubble;
     [SerializeField] private TextMeshProUGUI nameTMP;
+    [SerializeField] private GameObject unlockableQuestionsGO;
 
     private int dialogueIndex;
     [Space (25)]
@@ -35,18 +35,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame && inDialog)
         {
-            if (canExit)
-            {
-                FadeUI(false, 0.2f, 0);
-                Sequence sequence = DOTween.Sequence();
-                sequence.AppendInterval(0.8f);
-                sequence.AppendCallback(() => ResetState());
-            }
-
-            if (nextDialogue)
-            {
-                animatedText.ReadText(currentCharacter.DialogueData.conversationBlock[dialogueIndex]);
-            }
+            NextDialogueLine();
         }
     }
 
@@ -63,6 +52,21 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void NextDialogueLine()
+    {
+        if (canExit)
+        {
+            FadeUI(false, 0.2f, 0);
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendInterval(0.8f);
+            sequence.AppendCallback(() => ResetState());
+        }
+        if (nextDialogue)
+        {
+            animatedText.ReadText(currentCharacter.DialogueData.conversationBlock[dialogueIndex]);
+        }
+    }
+
     public void FinishDialogue()
     {
         if(dialogueIndex < currentCharacter.DialogueData.conversationBlock.Count - 1)
@@ -74,6 +78,7 @@ public class DialogueManager : MonoBehaviour
         {
             nextDialogue = false;
             canExit = true;
+            unlockableQuestionsGO.SetActive(true);
         }
     }
     
@@ -84,7 +89,6 @@ public class DialogueManager : MonoBehaviour
 
     public void ResetState()
     {
-        currentCharacter.Reset();
         inDialog = false;
         canExit = false;
     }
