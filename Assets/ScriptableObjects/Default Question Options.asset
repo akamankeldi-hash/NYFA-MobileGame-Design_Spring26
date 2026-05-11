@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc59576ce7b32944ea497e14d8582ec1, type: 3}
   m_Name: Default Question Options
   m_EditorClassIdentifier: Assembly-CSharp::QuestionOptions
-  Question1Text: What happened to you? How did you die?
-  Question2Text: Are we testing questioning system?
+  Question1Text: What happened before you got here?
+  Question2Text: What kind of life did you live?
   Question3Text: What was your job?
-  Question4Text: What happened to our Miro Board?
-  Question5Text: MadaMada?
+  Question4Text: What happened to your clothes?
+  Question5Text: Why do you have a knife?
