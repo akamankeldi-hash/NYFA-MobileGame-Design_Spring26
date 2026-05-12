@@ -1,3 +1,11 @@
+public enum E_GameplayUiState
+{
+    BioState,
+    InspectState,
+    QuestioningState,
+    AnsweringState
+}
+
 public enum E_QuestionType
 {
     WhatHappenedBeforeYouGotHere, //1

@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image nameBubble;
     [SerializeField] private TextMeshProUGUI nameTMP;
     [SerializeField] private GameObject unlockableQuestionsGO;
+    [SerializeField] private E_GameplayUiState uiState;
 
     private int dialogueIndex;
     [Space (25)]
@@ -77,7 +80,6 @@ public class DialogueManager : MonoBehaviour
         {
             nextDialogue = false;
             canExit = true;
-            unlockableQuestionsGO.SetActive(true);
         }
     }
     
@@ -118,6 +120,22 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void DialogueFadeOut()
+    {
+        // FadeUI(false, 1.0f, 0);
+        unlockableQuestionsGO.SetActive(true);
+    }
+
+    public void OpenQuestions()
+    {
+        unlockableQuestionsGO.SetActive(true);
+    }
+
+    public void CloseQuestions()
+    {
+        unlockableQuestionsGO.SetActive(false);
+    }
+
     public void SetCurrentCharacter(CharacterDialogue characterDialogue)
     {
         currentCharacter = characterDialogue;
@@ -127,5 +145,15 @@ public class DialogueManager : MonoBehaviour
     public CharacterDialogue GetCurrentCharacter()
     {
         return currentCharacter;
+    }
+
+    void OnEnable()
+    {
+        animatedText.onDialogueFinish.AddListener(DialogueFadeOut);
+    }
+
+    void OnDisable()
+    {
+        animatedText.onDialogueFinish.RemoveAllListeners();
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d561c47c02fd6ef4eaf04ade708b06a4, type: 3}
   m_Name: Character_Test
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterFirstName: Someone
-  characterLastName: Someoneovich
+  characterFirstName: Test
+  characterLastName: Testovich
   traitJob: Professional Idiot
   traitCauseOfDeath: Tripped over his own feet and fell from a skyscraper
   traitLegacies: Once fed stray kittens
