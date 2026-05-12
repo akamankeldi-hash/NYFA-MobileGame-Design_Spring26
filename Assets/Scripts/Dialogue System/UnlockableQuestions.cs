@@ -1,13 +1,15 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UnlockableQuestions : MonoBehaviour
 {
+    [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] QuestionOptions questionOptions;
     [SerializeField] Button question1Button, question2Button, question3Button, question4Button, question5Button;
     [SerializeField] TextMeshProUGUI question1Text, question2Text, question3Text, question4Text, question5Text;
-    
+
     void Start()
     {
         if (!questionOptions) return;
@@ -54,5 +56,48 @@ public class UnlockableQuestions : MonoBehaviour
             question5Text.text = questionOptions.Question5Text;
             break;
         }
+    }
+
+    void OnQuestionButtonClicked(int index)
+    {
+        switch (index)
+        {
+            case 1:
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatHappenedBeforeYouGotHere);
+            break;
+            
+            case 2:
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatKindOfLifeDidYouLive);
+            break;
+            
+            case 3:
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatWasYourJob);
+            break;
+
+            case 4:
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatHappenedToYourClothes);
+            break;
+            
+            case 5:
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhyDoYouHaveAKnife);
+            break;
+        }
+    }
+        
+    void OnEnable()
+    {
+        question1Button.onClick.AddListener(() => OnQuestionButtonClicked(1));
+        question2Button.onClick.AddListener(() => OnQuestionButtonClicked(2));
+        question3Button.onClick.AddListener(() => OnQuestionButtonClicked(3));
+        question4Button.onClick.AddListener(() => OnQuestionButtonClicked(4));
+        question5Button.onClick.AddListener(() => OnQuestionButtonClicked(5));
+    }
+    void OnDisable()
+    {
+        question1Button.onClick.RemoveAllListeners();
+        question2Button.onClick.RemoveAllListeners();
+        question3Button.onClick.RemoveAllListeners();
+        question4Button.onClick.RemoveAllListeners();
+        question5Button.onClick.RemoveAllListeners();
     }
 }

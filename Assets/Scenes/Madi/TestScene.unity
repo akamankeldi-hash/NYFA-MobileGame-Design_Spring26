@@ -1449,6 +1449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887b9572874350e4eb08548fa6f265e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnlockableQuestions
+  dialogueManager: {fileID: 0}
   questionOptions: {fileID: 11400000, guid: 4663b91d8075b8143b4ecf3b4b90ef1b, type: 2}
   question1Button: {fileID: 1445273991}
   question2Button: {fileID: 15530381}
@@ -2188,6 +2189,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1307728365}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnlockQuestion
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnlockableQuestions, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6609863939391473792, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
       propertyPath: m_Name
       value: Button (1)
@@ -2719,6 +2752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDialogue
   characterData: {fileID: 11400000, guid: 29042e120205d5146a8a141c36fb5e16, type: 2}
   dialogueData: {fileID: 11400000, guid: b94a35885196503418b5a412db7949f2, type: 2}
+  answerOptions: {fileID: 11400000, guid: ee26b574a8c26304da5d797c9fca2517, type: 2}
   characterIsTalking: 0
 --- !u!114 &2054870676
 MonoBehaviour:

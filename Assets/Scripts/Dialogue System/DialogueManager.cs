@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
@@ -91,6 +90,32 @@ public class DialogueManager : MonoBehaviour
     {
         inDialog = false;
         canExit = false;
+    }
+
+    public void ReceiveAnAnswer(E_QuestionType questionType)
+    {
+        switch (questionType)
+        {
+            case E_QuestionType.WhatHappenedBeforeYouGotHere:
+                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer1Text);
+                break;
+            
+            case E_QuestionType.WhatKindOfLifeDidYouLive:
+                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer2Text);
+                break;
+            
+            case E_QuestionType.WhatWasYourJob:
+                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer3Text);
+                break;
+
+            case E_QuestionType.WhatHappenedToYourClothes:
+                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer4Text);
+                break;
+            
+            case E_QuestionType.WhyDoYouHaveAKnife:
+                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer5Text);
+                break;
+        }
     }
 
     public void SetCurrentCharacter(CharacterDialogue characterDialogue)
