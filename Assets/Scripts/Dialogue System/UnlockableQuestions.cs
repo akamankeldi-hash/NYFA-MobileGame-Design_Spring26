@@ -63,23 +63,23 @@ public class UnlockableQuestions : MonoBehaviour
         switch (index)
         {
             case 1:
-            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatHappenedBeforeYouGotHere);
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatHappenedBeforeYouGotHere, true, 0.2f, 0);
             break;
             
             case 2:
-            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatKindOfLifeDidYouLive);
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatKindOfLifeDidYouLive, true, 0.2f, 0);
             break;
             
             case 3:
-            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatWasYourJob);
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatWasYourJob, true, 0.2f, 0);
             break;
 
             case 4:
-            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatHappenedToYourClothes);
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhatHappenedToYourClothes, true, 0.2f, 0);
             break;
             
             case 5:
-            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhyDoYouHaveAKnife);
+            DialogueManager.instance.ReceiveAnAnswer(E_QuestionType.WhyDoYouHaveAKnife, true, 0.2f, 0);
             break;
         }
     }

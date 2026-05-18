@@ -11,6 +11,7 @@ public class HudManager : MonoBehaviour
         bioButton.onClick.AddListener(() => BioButton());
         inspectButton.onClick.AddListener(() => InspectButton());
         questioningButton.onClick.AddListener(() => QuestionButton());
+        bioButton.interactable = false;
     }
 
     void BioButton()
