@@ -4,21 +4,11 @@ using UnityEngine.UI;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private Button testButton;
-    private CharacterDialogue characterDialogue;
+    private CharacterData characterDialogue;
 
     void Awake()
     {
-        characterDialogue = GetComponent<CharacterDialogue>();
-    }
-    
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
+        characterDialogue = GetComponent<CharacterData>();
     }
 
     void OnDialogueTrigger()

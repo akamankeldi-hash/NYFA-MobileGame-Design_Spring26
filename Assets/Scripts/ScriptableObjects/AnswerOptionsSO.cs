@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Answer Options", menuName = "ScriptableObjects/Answer Options")]
-public class AnswerOptions : ScriptableObject
+public class AnswerOptionsSO : ScriptableObject
 {
     [TextArea(4,4)] [Header("What Happened Before You Got Here")]
     public string Answer1Text;

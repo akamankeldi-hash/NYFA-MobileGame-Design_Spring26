@@ -4,11 +4,11 @@ using UnityEngine.UI;
 public class DialogueTesting : MonoBehaviour
 {
     [SerializeField] private Button testButton;
-    private CharacterDialogue characterDialogue;
+    private CharacterData characterDialogue;
 
     void Awake()
     {
-        characterDialogue = GetComponent<CharacterDialogue>();
+        characterDialogue = GetComponent<CharacterData>();
     }
 
     void Start()

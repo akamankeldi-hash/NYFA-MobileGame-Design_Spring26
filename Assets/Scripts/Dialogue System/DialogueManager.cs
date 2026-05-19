@@ -3,16 +3,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
     public TMP_Animated animatedText;
-    [SerializeField] private CharacterDialogue currentCharacter;
+    [SerializeField] private CharacterData currentCharacter;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Image nameBubble;
+    [SerializeField] private Button bubbleButton;
     [SerializeField] private TextMeshProUGUI nameTMP;
     [SerializeField] private GameObject unlockableQuestionsGO;
     [SerializeField] private E_GameplayUiState uiState;
@@ -31,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         animatedText.onDialogueFinish.AddListener(() => FinishDialogue());
+        bubbleButton.onClick.AddListener(() => HideUI());
     }
 
     void Update()
@@ -50,7 +50,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueIndex = 0;
             sequence.Join(canvasGroup.transform.DOScale(0, time * 2).From().SetEase(Ease.OutBack));
-            sequence.AppendCallback(() => animatedText.ReadText(currentCharacter.DialogueData.conversationBlock[0]));
+            sequence.AppendCallback(() => animatedText.ReadText(currentCharacter.GetDialogueDataSO().conversationBlock[0]));
         }
     }
 
@@ -65,13 +65,13 @@ public class DialogueManager : MonoBehaviour
         }
         if (nextDialogue)
         {
-            animatedText.ReadText(currentCharacter.DialogueData.conversationBlock[dialogueIndex]);
+            animatedText.ReadText(currentCharacter.GetDialogueDataSO().conversationBlock[dialogueIndex]);
         }
     }
 
     public void FinishDialogue()
     {
-        if(dialogueIndex < currentCharacter.DialogueData.conversationBlock.Count - 1)
+        if(dialogueIndex < currentCharacter.GetDialogueDataSO().conversationBlock.Count - 1)
         {
             dialogueIndex++;
             nextDialogue = true;
@@ -81,6 +81,11 @@ public class DialogueManager : MonoBehaviour
             nextDialogue = false;
             canExit = true;
         }
+    }
+
+    private void HideUI()
+    {
+        FadeUI(false, 0.2f, 0);
     }
     
     public void ClearText()
@@ -101,23 +106,23 @@ public class DialogueManager : MonoBehaviour
         switch (questionType)
         {
             case E_QuestionType.WhatHappenedBeforeYouGotHere:
-                answer = currentCharacter.GetAnswerOptions().Answer1Text;
+                answer = currentCharacter.GetAnswerOptionsSO().Answer1Text;
                 break;
             
             case E_QuestionType.WhatKindOfLifeDidYouLive:
-                answer = currentCharacter.GetAnswerOptions().Answer2Text;
+                answer = currentCharacter.GetAnswerOptionsSO().Answer2Text;
                 break;
             
             case E_QuestionType.WhatWasYourJob:
-                answer = currentCharacter.GetAnswerOptions().Answer3Text;
+                answer = currentCharacter.GetAnswerOptionsSO().Answer3Text;
                 break;
 
             case E_QuestionType.WhatHappenedToYourClothes:
-                answer = currentCharacter.GetAnswerOptions().Answer4Text;
+                answer = currentCharacter.GetAnswerOptionsSO().Answer4Text;
                 break;
             
             case E_QuestionType.WhyDoYouHaveAKnife:
-                answer = currentCharacter.GetAnswerOptions().Answer5Text;
+                answer = currentCharacter.GetAnswerOptionsSO().Answer5Text;
                 break;
         }
         
@@ -148,13 +153,13 @@ public class DialogueManager : MonoBehaviour
         unlockableQuestionsGO.SetActive(false);
     }
 
-    public void SetCurrentCharacter(CharacterDialogue characterDialogue)
+    public void SetCurrentCharacter(CharacterData characterDialogue)
     {
         currentCharacter = characterDialogue;
-        nameTMP.text = characterDialogue.GetCharacterData().characterFirstName + " " + characterDialogue.GetCharacterData().characterLastName;
+        nameTMP.text = characterDialogue.GetCharacterDataSO().characterFirstName + " " + characterDialogue.GetCharacterDataSO().characterLastName;
     }
 
-    public CharacterDialogue GetCurrentCharacter()
+    public CharacterData GetCurrentCharacter()
     {
         return currentCharacter;
     }

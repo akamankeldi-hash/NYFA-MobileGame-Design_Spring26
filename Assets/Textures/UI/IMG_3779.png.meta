@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7876efb008cb5de4b9d9db46f6f63ba6
+guid: 0f109f3926424c347b60a53d00ad767c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChainEnd_0
+      name: IMG_3779_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 256
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,8 +151,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0201dcb898ebfb4478cd63b654781959
-      internalID: 2080994991
+      spriteID: 4da699f466f7e6844a98a1b7aa303bc5
+      internalID: -153061972
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fafbe0e922336ff43a7dbafb2cb37c51
+    spriteID: 241f7374a06c40d42bc4072f8a8c29f5
     internalID: 0
     vertices: []
     indices: 
@@ -171,7 +171,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChainEnd_0: 2080994991
+      IMG_3779_0: -153061972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

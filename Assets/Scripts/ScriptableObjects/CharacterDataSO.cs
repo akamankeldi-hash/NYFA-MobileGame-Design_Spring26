@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Character Data", menuName = "ScriptableObjects/Character Data")]
-public class CharacterData : ScriptableObject
+public class CharacterDataSO : ScriptableObject
 {
     public string characterFirstName;
     public string characterLastName;

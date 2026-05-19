@@ -8,12 +8,12 @@ public class DialogueAudio : MonoBehaviour
     [SerializeField] private AudioSource voiceSource;
     [SerializeField] private AudioSource punctuationSource;
     
-    private CharacterDialogue currentCharacter;
+    private CharacterData currentCharacter;
     private TMP_Animated animatedText;
 
     void Start()
     {
-        currentCharacter = GetComponent<CharacterDialogue>();
+        currentCharacter = GetComponent<CharacterData>();
         animatedText = DialogueManager.instance.animatedText;
         animatedText.onTextReveal.AddListener((newChar) => ReproduceSound(newChar));
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Question Options", menuName = "ScriptableObjects/Question Options")]
-public class QuestionOptions : ScriptableObject
+public class QuestionOptionsSO : ScriptableObject
 {
     [TextArea(4,4)]
     public string Question1Text;

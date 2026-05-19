@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UnlockableQuestions : MonoBehaviour
 {
     [SerializeField] private DialogueManager dialogueManager;
-    [SerializeField] QuestionOptions questionOptions;
+    [SerializeField] QuestionOptionsSO questionOptions;
     [SerializeField] Button question1Button, question2Button, question3Button, question4Button, question5Button;
     [SerializeField] TextMeshProUGUI question1Text, question2Text, question3Text, question4Text, question5Text;
 

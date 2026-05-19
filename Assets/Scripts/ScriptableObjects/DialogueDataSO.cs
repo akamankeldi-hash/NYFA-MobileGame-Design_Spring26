@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Dialogue Data", menuName = "ScriptableObjects/Dialogue Data")]
-public class DialogueData : ScriptableObject
+public class DialogueDataSO : ScriptableObject
 {
     [TextArea(4,4)]
     public List<string> conversationBlock;
