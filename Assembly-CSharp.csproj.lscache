@@ -60,6 +60,7 @@ Assets/Scripts/
   UnlockableQuestions.cs
  ENUMs/ENUMs.cs
  Generic/TMP_Animated.cs
+ HUD/HudManager.cs
  Judgment.cs
  Rotate.cs
  ScriptableObjects/

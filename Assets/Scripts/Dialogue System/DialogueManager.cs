@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image nameBubble;
     [SerializeField] private TextMeshProUGUI nameTMP;
     [SerializeField] private GameObject unlockableQuestionsGO;
+    [SerializeField] private E_GameplayUiState uiState;
 
     private int dialogueIndex;
     [Space (25)]
@@ -77,7 +80,6 @@ public class DialogueManager : MonoBehaviour
         {
             nextDialogue = false;
             canExit = true;
-            unlockableQuestionsGO.SetActive(true);
         }
     }
     
@@ -92,30 +94,58 @@ public class DialogueManager : MonoBehaviour
         canExit = false;
     }
 
-    public void ReceiveAnAnswer(E_QuestionType questionType)
-    {
+    public void ReceiveAnAnswer(E_QuestionType questionType, bool show, float time, float delay)
+    {    
+        string answer = string.Empty;
+           
         switch (questionType)
         {
             case E_QuestionType.WhatHappenedBeforeYouGotHere:
-                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer1Text);
+                answer = currentCharacter.GetAnswerOptions().Answer1Text;
                 break;
             
             case E_QuestionType.WhatKindOfLifeDidYouLive:
-                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer2Text);
+                answer = currentCharacter.GetAnswerOptions().Answer2Text;
                 break;
             
             case E_QuestionType.WhatWasYourJob:
-                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer3Text);
+                answer = currentCharacter.GetAnswerOptions().Answer3Text;
                 break;
 
             case E_QuestionType.WhatHappenedToYourClothes:
-                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer4Text);
+                answer = currentCharacter.GetAnswerOptions().Answer4Text;
                 break;
             
             case E_QuestionType.WhyDoYouHaveAKnife:
-                animatedText.ReadText(currentCharacter.GetAnswerOptions().Answer5Text);
+                answer = currentCharacter.GetAnswerOptions().Answer5Text;
                 break;
         }
+        
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendInterval(delay);
+        sequence.Append(canvasGroup.DOFade(show ? 1 : 0, time));
+        if (show)
+        {
+            dialogueIndex = 0;
+            sequence.Join(canvasGroup.transform.DOScale(0, time * 2).From().SetEase(Ease.OutBack));
+            sequence.AppendCallback(() => animatedText.ReadText(answer));
+        }
+    }
+
+    private void DialogueFadeOut()
+    {
+        // FadeUI(false, 1.0f, 0);
+        unlockableQuestionsGO.SetActive(true);
+    }
+
+    public void OpenQuestions()
+    {
+        unlockableQuestionsGO.SetActive(true);
+    }
+
+    public void CloseQuestions()
+    {
+        unlockableQuestionsGO.SetActive(false);
     }
 
     public void SetCurrentCharacter(CharacterDialogue characterDialogue)
@@ -127,5 +157,15 @@ public class DialogueManager : MonoBehaviour
     public CharacterDialogue GetCurrentCharacter()
     {
         return currentCharacter;
+    }
+
+    void OnEnable()
+    {
+        animatedText.onDialogueFinish.AddListener(DialogueFadeOut);
+    }
+
+    void OnDisable()
+    {
+        animatedText.onDialogueFinish.RemoveAllListeners();
     }
 }
