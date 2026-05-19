@@ -1259,6 +1259,11 @@ MonoBehaviour:
   bioWidget: {fileID: 1278711365}
   inspectWidget: {fileID: 808495395}
   questioningWidget: {fileID: 948656937}
+--- !u!1 &636358940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6609863939391473792, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+  m_PrefabInstance: {fileID: 1949288391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &808495395
 GameObject:
   m_ObjectHideFlags: 0
@@ -3920,6 +3925,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6609863939391473792, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
       propertyPath: m_Name
       value: Button
@@ -3927,7 +3940,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6609863939391473792, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1949288396}
   m_SourcePrefab: {fileID: 100100000, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
 --- !u!224 &1949288392 stripped
 RectTransform:
@@ -3939,12 +3955,24 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6531593437593844459, guid: f00e1fa27c99b7044b083db764ca2cb1, type: 3}
   m_PrefabInstance: {fileID: 1949288391}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 636358940}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1949288396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636358940}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def214d931a92f74c8143bcfe545fff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Clicks
 --- !u!1001 &2012115099
 PrefabInstance:
   m_ObjectHideFlags: 0

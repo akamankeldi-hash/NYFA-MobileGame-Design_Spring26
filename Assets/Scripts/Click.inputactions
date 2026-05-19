@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "Click",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "a66bfc5e-654e-4d6c-8225-d547cb97e0a3",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Value",
+                    "id": "f5554918-1bd9-4327-bfe9-9f0c502a44d1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ffb72e2d-b39b-4c80-a335-8239f0edb625",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
