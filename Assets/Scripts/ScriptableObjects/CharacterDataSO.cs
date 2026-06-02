@@ -5,6 +5,7 @@ public class CharacterDataSO : ScriptableObject
 {
     public string characterFirstName;
     public string characterLastName;
+    public bool correctVerdictIsHeaven;
 
     // Traits
     public string traitJob;

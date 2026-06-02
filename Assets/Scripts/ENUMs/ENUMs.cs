@@ -26,3 +26,13 @@ public enum E_CharacterSins
     Gluttony,
     Lust
 }
+
+public enum E_PropType
+{
+    Knife,
+    Wound,
+    Clothing,
+    TornClothing,
+    DirtyClothing,
+    JobTool
+}

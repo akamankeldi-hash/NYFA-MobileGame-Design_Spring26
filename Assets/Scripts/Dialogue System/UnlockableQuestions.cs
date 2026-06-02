@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class UnlockableQuestions : MonoBehaviour
 {
+    public static UnlockableQuestions instance;
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] QuestionOptionsSO questionOptions;
     [SerializeField] Button question1Button, question2Button, question3Button, question4Button, question5Button;
     [SerializeField] TextMeshProUGUI question1Text, question2Text, question3Text, question4Text, question5Text;
+
+    void Awake() => instance = this;
 
     void Start()
     {
@@ -16,7 +19,7 @@ public class UnlockableQuestions : MonoBehaviour
         ResetState();
     }
 
-    void ResetState()
+    public void ResetState()
     {
         question1Button.enabled = true;
         question2Button.enabled = true;

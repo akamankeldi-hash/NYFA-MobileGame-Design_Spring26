@@ -206,7 +206,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 895
-        y: 0
+        y: 2569
         width: 1153
         height: 883
       alignment: 0
@@ -311,6 +311,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 0
+        width: 1149
+        height: 2544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2518529ff9ce45743884a3735978ee55
+      internalID: -374537928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -333,6 +355,7 @@ TextureImporter:
       IMG_3771_1: 1431523322
       IMG_3771_2: 721972418
       IMG_3771_3: 1618430429
+      UI_Sheet_0: -374537928
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
