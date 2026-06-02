@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TouchPhase = UnityEngine.TouchPhase;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private CharacterData currentCharacter;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Image nameBubble;
-    [SerializeField] private Button bubbleButton;
+    [SerializeField] private Button dialogueBubbleButton;
     [SerializeField] private TextMeshProUGUI nameTMP;
     [SerializeField] private GameObject unlockableQuestionsGO;
     [SerializeField] private E_GameplayUiState uiState;
@@ -29,15 +30,16 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        animatedText.onDialogueFinish.AddListener(() => FinishDialogue());
-        bubbleButton.onClick.AddListener(() => HideUI());
+        dialogueBubbleButton.onClick.AddListener(() => HideUI());
     }
 
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && inDialog)
+        if (inDialog)
         {
-            NextDialogueLine();
+            bool advance = (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame);
+            advance |= Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+            if (advance) NextDialogueLine();
         }
     }
 
@@ -63,7 +65,7 @@ public class DialogueManager : MonoBehaviour
             sequence.AppendInterval(0.8f);
             sequence.AppendCallback(() => ResetState());
         }
-        if (nextDialogue)
+        else if (nextDialogue)
         {
             animatedText.ReadText(currentCharacter.GetDialogueDataSO().conversationBlock[dialogueIndex]);
         }
@@ -157,6 +159,8 @@ public class DialogueManager : MonoBehaviour
     {
         currentCharacter = characterDialogue;
         nameTMP.text = characterDialogue.GetCharacterDataSO().characterFirstName + " " + characterDialogue.GetCharacterDataSO().characterLastName;
+        var profile = SinModifier.instance.GetProfile(characterDialogue.characterSins);
+        characterDialogue.GetDialogueAudio().SetPitch(profile.audioPitch);
     }
 
     public CharacterData GetCurrentCharacter()

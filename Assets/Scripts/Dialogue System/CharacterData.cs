@@ -23,18 +23,11 @@ public class CharacterData : MonoBehaviour
         animatedText = DialogueManager.instance.animatedText;
     }
     
-    public CharacterDataSO GetCharacterDataSO()
-    {
-        return characterDataSO;
-    }
+    public CharacterDataSO GetCharacterDataSO() => characterDataSO;
 
-    public DialogueDataSO GetDialogueDataSO()
-    {
-        return dialogueDataSO;
-    }
+    public DialogueDataSO GetDialogueDataSO() => dialogueDataSO;
 
-    public AnswerOptionsSO GetAnswerOptionsSO()
-    {
-        return answerOptionsSO;
-    }
+    public AnswerOptionsSO GetAnswerOptionsSO() => answerOptionsSO;
+
+    public DialogueAudio GetDialogueAudio() => dialogueAudio;
 }

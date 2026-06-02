@@ -36,4 +36,10 @@ public class DialogueAudio : MonoBehaviour
             voiceSource.Play();
         }
     }
+
+    public void SetPitch(float pitch)
+    {
+        voiceSource.pitch = pitch;
+        punctuationSource.pitch = pitch;
+    }
 }
