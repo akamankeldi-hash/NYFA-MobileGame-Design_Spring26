@@ -8,7 +8,6 @@ public class Clicks : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Touchscreen.current != null)
