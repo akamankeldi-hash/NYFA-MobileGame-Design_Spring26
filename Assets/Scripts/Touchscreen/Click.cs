@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Clicks : MonoBehaviour
+public class Click : MonoBehaviour
 {
     void Start()
     {

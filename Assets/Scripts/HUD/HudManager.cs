@@ -1,94 +1,149 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using System;
 
 public class HudManager : MonoBehaviour
 {
-    [SerializeField] private Button heavenButton, hellButton, bioButton, inspectButton, questioningButton;
-    [SerializeField] private GameObject bioWidget, inspectWidget, questioningWidget;
+    public static HudManager instance;
+
+    [Header("Nav Buttons")]
+    [SerializeField] private Button bioButton;
+    [SerializeField] private Button questioningButton;
+    [SerializeField] private Button heavenButton;
+    [SerializeField] private Button hellButton;
+
+    [Header("Widgets")]
+    [SerializeField] private GameObject inspectWidget;
+    [SerializeField] private GameObject questioningWidget;
+
+    [Header("Bio Panel")]
     [SerializeField] private RectTransform bioWidgetTransform;
-    private bool openBio;
+    [SerializeField] private float bioHiddenY = -1100f;
+    [SerializeField] private float bioOpenY   =  0f;
+
+    [Header("Character Rotation")]
+    [SerializeField] private InspectSystem inspectSystem;
+
+    [Header("Toast")]
+    [SerializeField] private GameObject propDiscoveredToast;
+    [SerializeField] private TMPro.TextMeshProUGUI propToastText;
+
+    private enum HudState { Inspect, BioOpen, Questioning }
+    private HudState currentState = HudState.Inspect;
+    private bool bioIsOpen = false;
+    private bool isAnimating = false;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
-        bioButton.onClick.AddListener(() => BioButton());
-        inspectButton.onClick.AddListener(() => InspectButton());
-        questioningButton.onClick.AddListener(() => QuestionButton());
-        heavenButton.onClick.AddListener(() => HeavenButton());
-        hellButton.onClick.AddListener(() => HellButton());
-        // bioButton.interactable = false;
+        bioButton.onClick.AddListener(OnBioButton);
+        questioningButton.onClick.AddListener(OnQuestioningButton);
+        heavenButton.onClick.AddListener(() => VerdictManager.instance.TryVerdict(true));
+        hellButton.onClick.AddListener(() => VerdictManager.instance.TryVerdict(false));
+
+        EnterInspect(instant: true);
     }
 
-    private void HeavenButton()
+    void OnBioButton()
     {
-        VerdictManager.instance.TryVerdict(true);
+        if (isAnimating) return;
+
+        if (bioIsOpen)
+        {
+            CloseBio();
+        }
+        else
+        {
+            OpenBio();
+        }
     }
 
-    private void HellButton()
+    void OnQuestioningButton()
     {
-        VerdictManager.instance.TryVerdict(false);
+        if (isAnimating) return;
+        if (currentState == HudState.BioOpen) return;
+
+        if (currentState == HudState.Questioning)
+        {
+            EnterInspect();
+        }
+        else
+        {
+            EnterQuestioning();
+        }
     }
 
-    void BioButton()
+    void OpenBio()
     {
-        Debug.Log("BIO CLICK TEST");
-        openBio = !openBio;
-        OpenBio(openBio);
-        // SwitchButtonInteraction();
-        // bioButton.interactable = false;
-        // bioWidget.SetActive(true);
+        isAnimating = true;
+        currentState = HudState.BioOpen;
+        bioIsOpen = true;
+
+        inspectWidget.SetActive(false);
+        questioningWidget.SetActive(false);
+        SetRotationEnabled(false);
+
+        bioWidgetTransform.DOAnchorPosY(bioOpenY, 0.4f).SetEase(Ease.OutBack).OnComplete(() => isAnimating = false);
     }
 
-    void FillBio()
+    void CloseBio()
     {
-        
+        isAnimating = true;
+        bioIsOpen = false;
+
+        bioWidgetTransform.DOAnchorPosY(bioHiddenY, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                isAnimating = false;
+                EnterInspect();
+            });
     }
 
-    void InspectButton()
+    void EnterInspect(bool instant = false)
     {
-        SwitchButtonInteraction();
-        // inspectButton.interactable = false;
+        currentState = HudState.Inspect;
 
-        bioWidget.SetActive(false);
         inspectWidget.SetActive(true);
         questioningWidget.SetActive(false);
+        SetRotationEnabled(true);
+
+        if (instant)
+        {
+            bioWidgetTransform.anchoredPosition = new Vector2(bioWidgetTransform.anchoredPosition.x, bioHiddenY);
+        }
     }
 
-    void QuestionButton()
+    void EnterQuestioning()
     {
-        SwitchButtonInteraction();
-        // questioningButton.interactable = false;
+        currentState = HudState.Questioning;
 
-        bioWidget.SetActive(false);
         inspectWidget.SetActive(false);
         questioningWidget.SetActive(true);
+        SetRotationEnabled(false);
     }
 
-    void SwitchButtonInteraction()
+    void SetRotationEnabled(bool enabled)
     {
-        if (!bioButton.interactable)
+        if (inspectSystem != null)
         {
-            // bioButton.interactable = true;
-        }
-
-        if (!inspectButton.interactable)
-        {
-            // inspectButton.interactable = true;
-        }
-
-        if (!questioningButton.interactable)
-        {
-            // questioningButton.interactable = true;
+            inspectSystem.enabled = enabled;
         }
     }
 
-    void OpenBio(bool open)
+    public void ShowPropDiscoveredToast(E_PropType propType)
     {
-        inspectWidget.SetActive(false);
-        questioningWidget.SetActive(false);
-        
-        float targetY = open ? 1100 : 0;
-        bioWidgetTransform.DOAnchorPosY(targetY, 0.4f).SetEase(Ease.InBack).OnComplete(() => FillBio());
+        if (propDiscoveredToast == null) return;
+
+        propToastText.text = $"New question unlocked!";
+        propDiscoveredToast.SetActive(true);
+
+        DOVirtual.DelayedCall(2f, () =>
+        {
+            if (propDiscoveredToast != null)
+                propDiscoveredToast.SetActive(false);
+        });
     }
 }

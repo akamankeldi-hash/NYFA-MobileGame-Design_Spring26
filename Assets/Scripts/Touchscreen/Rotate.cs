@@ -1,15 +1,10 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Click : MonoBehaviour
+public class Rotate : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 0.5f;
     private float rotationX;
     private float rotationY;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -24,7 +19,5 @@ public class Click : MonoBehaviour
                 transform.Rotate(Vector3.up, -deltaX * rotationSpeed, Space.World);
             }
         }
-
-
     }
 }

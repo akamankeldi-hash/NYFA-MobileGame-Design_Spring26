@@ -38,7 +38,6 @@ public class VerdictManager : MonoBehaviour
         characterModel.transform.DOFlip();
         if (characterCard == null) return;
         characterCard.DOAnchorPosX(targetX, 0.4f).SetEase(Ease.InBack).OnComplete(() => LoadNextSoul());
-        
     }
 
     private void LoadNextSoul()
