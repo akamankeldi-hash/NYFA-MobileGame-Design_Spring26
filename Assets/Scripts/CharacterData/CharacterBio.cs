@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class CharacterBio : MonoBehaviour
 {
@@ -16,6 +15,10 @@ public class CharacterBio : MonoBehaviour
     public void SetBioInfo()
     {
         charDataSO = charData.GetCharacterDataSO();
-        bioText.text = "Name: " + charDataSO.characterFirstName + " " +  charDataSO.characterLastName + " Job: " + charDataSO.traitJob;
+        bioText.text = "Name: " + charDataSO.characterFirstName + " " + charDataSO.characterLastName +
+        "\nAge: " + charDataSO.traitAge +
+        "\nPersonality: " + charDataSO.traitPersonality +
+        "\nCause of death: " + charDataSO.traitCauseOfDeath +
+        "\nJob: " + charDataSO.traitJob;
     }
 }

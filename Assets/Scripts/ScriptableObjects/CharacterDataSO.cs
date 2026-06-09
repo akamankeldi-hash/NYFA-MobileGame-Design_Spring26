@@ -5,11 +5,16 @@ public class CharacterDataSO : ScriptableObject
 {
     public string characterFirstName;
     public string characterLastName;
-    public bool correctVerdictIsHeaven;
-
+    [Range(0, 100)]public int traitAge;
+    
     // Traits
     public string traitJob;
     public string traitCauseOfDeath;
-    public string traitLegacies;
     public string traitPersonality;
+    public string traitLegacies;
+    
+    public E_CharacterSins characterSin;
+    public E_PropType[] activeProp;
+
+    public bool correctVerdictIsHeaven;
 }

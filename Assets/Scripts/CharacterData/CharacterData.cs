@@ -22,6 +22,18 @@ public class CharacterData : MonoBehaviour
     {
         animatedText = DialogueManager.instance.animatedText;
     }
+
+    public void SetData(CharacterDataSO dataSO, DialogueDataSO dialogueSO, AnswerOptionsSO answerSO)
+    {
+        characterDataSO = dataSO;
+        dialogueDataSO = dialogueSO;
+        answerOptionsSO = answerSO;
+
+        if (characterBio != null)
+        {
+            characterBio.SetBioInfo();
+        }
+    }
     
     public CharacterDataSO GetCharacterDataSO() => characterDataSO;
 

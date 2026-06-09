@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterFirstName: Test
   characterLastName: Testovich
+  traitAge: 19
   traitJob: Professional Idiot
   traitCauseOfDeath: Tripped over his own feet and fell from a skyscraper
-  traitLegacies: Once fed stray kittens
   traitPersonality: Honest and clumsy
+  traitLegacies: Once fed stray kittens
+  characterSin: 0
+  activeProp: 
+  correctVerdictIsHeaven: 1

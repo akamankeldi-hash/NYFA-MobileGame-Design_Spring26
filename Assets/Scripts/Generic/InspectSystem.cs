@@ -75,10 +75,8 @@ public class InspectSystem : MonoBehaviour
         }
     }
 
-    // public void ResetRotation()
-    // {
-    //     _isDragging = false;
-    //     _resetStartRotation = transform.rotation;
-    //     _resetTimer = 0f;
-    // }
+    public void ResetRotation()
+    {
+        transform.rotation = Quaternion.identity;
+    }
 }

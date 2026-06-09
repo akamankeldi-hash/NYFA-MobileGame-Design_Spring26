@@ -13,13 +13,16 @@ public class HudManager : MonoBehaviour
     [SerializeField] private Button hellButton;
 
     [Header("Widgets")]
+    [SerializeField] private GameObject bioWidget;
     [SerializeField] private GameObject inspectWidget;
     [SerializeField] private GameObject questioningWidget;
+    [SerializeField] private GameObject characterModel;
+    private RectTransform bioWidgetTransform;
+    private RectTransform questioningWidgetTransform;
 
-    [Header("Bio Panel")]
-    [SerializeField] private RectTransform bioWidgetTransform;
-    [SerializeField] private float bioHiddenY = -1100f;
-    [SerializeField] private float bioOpenY   =  0f;
+    [Header("Animation Variables")]
+    [SerializeField] private float panelHiddenY = -1100f;
+    [SerializeField] private float panelOpenY = 0f;
 
     [Header("Character Rotation")]
     [SerializeField] private InspectSystem inspectSystem;
@@ -31,11 +34,14 @@ public class HudManager : MonoBehaviour
     private enum HudState { Inspect, BioOpen, Questioning }
     private HudState currentState = HudState.Inspect;
     private bool bioIsOpen = false;
+    private bool questioningIsOpen = false;
     private bool isAnimating = false;
 
     void Awake()
     {
         instance = this;
+        bioWidgetTransform = bioWidget.GetComponent<RectTransform>();
+        questioningWidgetTransform = questioningWidget.GetComponent<RectTransform>();
     }
 
     void Start()
@@ -64,18 +70,34 @@ public class HudManager : MonoBehaviour
 
     void OnQuestioningButton()
     {
+        Debug.Log("Click Questioning?");
         if (isAnimating) return;
-        if (currentState == HudState.BioOpen) return;
 
-        if (currentState == HudState.Questioning)
+        if (questioningIsOpen)
         {
-            EnterInspect();
+            CloseQuestioning();
         }
         else
         {
-            EnterQuestioning();
+            OpenQuestioning();
         }
     }
+
+    void EnterInspect(bool instant = false)
+    {
+        currentState = HudState.Inspect;
+
+        inspectWidget.SetActive(true);
+        // questioningWidget.SetActive(false);
+        characterModel.SetActive(true);
+        SetRotationEnabled(true);
+
+        if (instant)
+        {
+            bioWidgetTransform.anchoredPosition = new Vector2(bioWidgetTransform.anchoredPosition.x, panelHiddenY);
+            questioningWidgetTransform.anchoredPosition = new Vector2(questioningWidgetTransform.anchoredPosition.x, panelHiddenY);
+        }
+    }    
 
     void OpenBio()
     {
@@ -84,10 +106,11 @@ public class HudManager : MonoBehaviour
         bioIsOpen = true;
 
         inspectWidget.SetActive(false);
-        questioningWidget.SetActive(false);
+        // questioningWidget.SetActive(false);
+        characterModel.SetActive(false);
         SetRotationEnabled(false);
 
-        bioWidgetTransform.DOAnchorPosY(bioOpenY, 0.4f).SetEase(Ease.OutBack).OnComplete(() => isAnimating = false);
+        bioWidgetTransform.DOAnchorPosY(panelOpenY, 0.4f).SetEase(Ease.OutBack).OnComplete(() => isAnimating = false);
     }
 
     void CloseBio()
@@ -95,38 +118,44 @@ public class HudManager : MonoBehaviour
         isAnimating = true;
         bioIsOpen = false;
 
-        bioWidgetTransform.DOAnchorPosY(bioHiddenY, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
-            {
-                isAnimating = false;
-                EnterInspect();
-            });
-    }
-
-    void EnterInspect(bool instant = false)
-    {
-        currentState = HudState.Inspect;
-
-        inspectWidget.SetActive(true);
-        questioningWidget.SetActive(false);
-        SetRotationEnabled(true);
-
-        if (instant)
+        bioWidgetTransform.DOAnchorPosY(panelHiddenY, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
         {
-            bioWidgetTransform.anchoredPosition = new Vector2(bioWidgetTransform.anchoredPosition.x, bioHiddenY);
-        }
+            isAnimating = false;
+            EnterInspect();
+        });
     }
 
-    void EnterQuestioning()
+    void OpenQuestioning()
     {
         currentState = HudState.Questioning;
+        isAnimating = true;
+        questioningIsOpen = true;
 
         inspectWidget.SetActive(false);
-        questioningWidget.SetActive(true);
+        // questioningWidget.SetActive(true);
+        characterModel.SetActive(false);
         SetRotationEnabled(false);
+
+        questioningWidgetTransform.DOAnchorPosY(panelOpenY, 0.4f).SetEase(Ease.OutBack).OnComplete(() => isAnimating = false);
+    }
+
+    void CloseQuestioning()
+    {
+        questioningIsOpen = false;
+        isAnimating = true;
+        // questioningIsOpen = false;
+
+        questioningWidgetTransform.DOAnchorPosY(panelHiddenY, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+        {
+            isAnimating = false;
+            EnterInspect();
+        });
     }
 
     void SetRotationEnabled(bool enabled)
     {
+        inspectSystem.ResetRotation();
+
         if (inspectSystem != null)
         {
             inspectSystem.enabled = enabled;
@@ -146,4 +175,12 @@ public class HudManager : MonoBehaviour
                 propDiscoveredToast.SetActive(false);
         });
     }
+
+    public GameObject GetActiveWidget() => currentState switch
+    {
+        HudState.BioOpen => bioWidget,
+        HudState.Inspect => bioWidget,
+        HudState.Questioning => questioningWidget,
+        _ => null
+    };
 }
