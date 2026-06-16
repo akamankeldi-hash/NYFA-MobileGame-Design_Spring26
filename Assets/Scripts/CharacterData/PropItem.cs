@@ -21,4 +21,9 @@ public class PropItem : MonoBehaviour, IPointerClickHandler
 
         // E_QuestionType unlockedQuestion 
     }
+
+    public void ResetProp()
+    {
+        
+    }
 }

@@ -23,11 +23,11 @@ public class CharacterData : MonoBehaviour
         animatedText = DialogueManager.instance.animatedText;
     }
 
-    public void SetData(CharacterDataSO dataSO, DialogueDataSO dialogueSO, AnswerOptionsSO answerSO)
+    public void SetData(CharacterTemplateSO template)
     {
-        characterDataSO = dataSO;
-        dialogueDataSO = dialogueSO;
-        answerOptionsSO = answerSO;
+        // characterDataSO = dataSO;
+        // dialogueDataSO = dialogueSO;
+        // answerOptionsSO = answerSO;
 
         if (characterBio != null)
         {
