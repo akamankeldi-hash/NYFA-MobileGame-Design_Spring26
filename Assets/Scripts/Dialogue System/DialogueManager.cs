@@ -8,20 +8,22 @@ using TouchPhase = UnityEngine.TouchPhase;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
+
     public TMP_Animated animatedText;
     [SerializeField] private CharacterData currentCharacter;
     [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private Image nameBubble;
     [SerializeField] private Button dialogueBubbleButton;
     [SerializeField] private TextMeshProUGUI nameTMP;
-    [SerializeField] private GameObject unlockableQuestionsGO;
-    [SerializeField] private E_GameplayUiState uiState;
+
+    [Header("Text Settings")]
+    [SerializeField] private float textSpeed = 10f;
+    [SerializeField] private float autoDismissDelay = 3f;
 
     private int dialogueIndex;
-    [Space (25)]
-    public bool inDialog;
-    [SerializeField] private bool canExit;
-    [SerializeField] private bool nextDialogue;
+    private bool inDialog;
+    private bool canExit;
+    private bool nextDialogue;
+    private Tween autoDismissTween;
 
     void Awake()
     {
@@ -30,147 +32,198 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        dialogueBubbleButton.onClick.AddListener(() => HideUI());
+        animatedText.speed = textSpeed;
+        dialogueBubbleButton.onClick.AddListener(OnBubbleClicked);
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     void Update()
     {
-        if (inDialog)
-        {
-            bool advance = (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame);
-            advance |= Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
-            if (advance) NextDialogueLine();
-        }
+        if (!inDialog) return;
+
+        bool advance = Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame;
+        advance |= Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+        if (advance) NextDialogueLine();
     }
 
-    public void FadeUI(bool show, float time, float delay)
+    // ── Public entry points ─────────────────────────────────────────
+
+    public void StartConversation(CharacterData character)
     {
+        SetCurrentCharacter(character);
+        inDialog = true;
+        dialogueIndex = 0;
+        canExit = false;
+        nextDialogue = false;
+
+        ClearText();
+        ShowBubble(() => animatedText.ReadText(currentCharacter.GetDialogueDataSO().conversationBlock[0]));
+        HudManager.instance.SetNavLocked(true);
+    }
+
+    public void ReceiveAnAnswer(E_QuestionType questionType, bool show, float time, float delay)
+    {
+        string answer = questionType switch
+        {
+            E_QuestionType.WhatHappenedBeforeYouGotHere => currentCharacter.GetAnswerOptionsSO().Answer1Text,
+            E_QuestionType.WhatKindOfLifeDidYouLive     => currentCharacter.GetAnswerOptionsSO().Answer2Text,
+            E_QuestionType.WhatWasYourJob               => currentCharacter.GetAnswerOptionsSO().Answer3Text,
+            E_QuestionType.WhatHappenedToYourClothes    => currentCharacter.GetAnswerOptionsSO().Answer4Text,
+            E_QuestionType.WhyDoYouHaveAnItem           => currentCharacter.GetAnswerOptionsSO().Answer5Text,
+            _ => "..."
+        };
+
+        CancelAutoDismiss();
+
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(delay);
-        sequence.Append(canvasGroup.DOFade(show ? 1 : 0, time));
         if (show)
         {
-            dialogueIndex = 0;
-            sequence.Join(canvasGroup.transform.DOScale(0, time * 2).From().SetEase(Ease.OutBack));
-            sequence.AppendCallback(() => animatedText.ReadText(currentCharacter.GetDialogueDataSO().conversationBlock[0]));
+            sequence.AppendCallback(() =>
+            {
+                ShowBubble(() => animatedText.ReadText(answer));
+            });
+        }
+        else
+        {
+            sequence.Append(canvasGroup.DOFade(0f, time)
+                .OnComplete(() => SetBubbleInteractable(false)));
         }
     }
 
-    public void NextDialogueLine()
+    // ── Dialogue flow ───────────────────────────────────────────────
+
+    void NextDialogueLine()
     {
         if (canExit)
         {
-            FadeUI(false, 0.2f, 0);
-            Sequence sequence = DOTween.Sequence();
-            sequence.AppendInterval(0.8f);
-            sequence.AppendCallback(() => ResetState());
+            ForceClose();
         }
         else if (nextDialogue)
         {
+            nextDialogue = false;
+            CancelAutoDismiss();
             animatedText.ReadText(currentCharacter.GetDialogueDataSO().conversationBlock[dialogueIndex]);
         }
     }
 
-    public void FinishDialogue()
+    void OnLineFinished()
     {
-        if(dialogueIndex < currentCharacter.GetDialogueDataSO().conversationBlock.Count - 1)
+        if (dialogueIndex < currentCharacter.GetDialogueDataSO().conversationBlock.Count - 1)
         {
             dialogueIndex++;
             nextDialogue = true;
         }
         else
         {
-            nextDialogue = false;
             canExit = true;
+            ScheduleAutoDismiss();
         }
     }
 
-    private void HideUI()
+    void OnAnswerFinished()
     {
-        FadeUI(false, 0.2f, 0);
+        ScheduleAutoDismiss();
     }
-    
-    public void ClearText()
+
+    void ScheduleAutoDismiss()
+    {
+        CancelAutoDismiss();
+        autoDismissTween = DOVirtual.DelayedCall(autoDismissDelay, () => ForceClose());
+    }
+
+    void CancelAutoDismiss()
+    {
+        autoDismissTween?.Kill();
+        autoDismissTween = null;
+    }
+
+    void OnBubbleClicked()
+    {
+        if (!inDialog) return;
+
+        if (nextDialogue)
+        {
+            NextDialogueLine();
+        }
+        else
+        {
+            ForceClose();
+        }
+    }
+
+    public void ForceClose()
+    {
+        CancelAutoDismiss();
+        HideBubble(() => ResetState());
+    }
+
+    // ── Show / hide ─────────────────────────────────────────────────
+
+    void ShowBubble(System.Action onShown = null)
+    {
+        SetBubbleInteractable(true);
+        DOTween.Kill(canvasGroup);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(canvasGroup.DOFade(1f, 0.2f));
+        sequence.Join(canvasGroup.transform.DOScale(0f, 0.4f).From().SetEase(Ease.OutBack));
+        if (onShown != null)
+            sequence.AppendCallback(() => onShown.Invoke());
+    }
+
+    void HideBubble(System.Action onHidden = null)
+    {
+        DOTween.Kill(canvasGroup);
+        canvasGroup.DOFade(0f, 0.2f).OnComplete(() =>
+        {
+            SetBubbleInteractable(false);
+            onHidden?.Invoke();
+        });
+    }
+
+    void SetBubbleInteractable(bool active)
+    {
+        canvasGroup.interactable = active;
+        canvasGroup.blocksRaycasts = active;
+    }
+
+    void ClearText()
     {
         animatedText.text = string.Empty;
     }
 
-    public void ResetState()
+    void ResetState()
     {
         inDialog = false;
         canExit = false;
+        nextDialogue = false;
+        HudManager.instance.SetNavLocked(false);
     }
 
-    public void ReceiveAnAnswer(E_QuestionType questionType, bool show, float time, float delay)
-    {    
-        string answer = string.Empty;
-           
-        switch (questionType)
-        {
-            case E_QuestionType.WhatHappenedBeforeYouGotHere:
-                answer = currentCharacter.GetAnswerOptionsSO().Answer1Text;
-                break;
-            
-            case E_QuestionType.WhatKindOfLifeDidYouLive:
-                answer = currentCharacter.GetAnswerOptionsSO().Answer2Text;
-                break;
-            
-            case E_QuestionType.WhatWasYourJob:
-                answer = currentCharacter.GetAnswerOptionsSO().Answer3Text;
-                break;
-
-            case E_QuestionType.WhatHappenedToYourClothes:
-                answer = currentCharacter.GetAnswerOptionsSO().Answer4Text;
-                break;
-            
-            case E_QuestionType.WhyDoYouHaveAKnife:
-                answer = currentCharacter.GetAnswerOptionsSO().Answer5Text;
-                break;
-        }
-        
-        Sequence sequence = DOTween.Sequence();
-        sequence.AppendInterval(delay);
-        sequence.Append(canvasGroup.DOFade(show ? 1 : 0, time));
-        if (show)
-        {
-            dialogueIndex = 0;
-            sequence.Join(canvasGroup.transform.DOScale(0, time * 2).From().SetEase(Ease.OutBack));
-            sequence.AppendCallback(() => animatedText.ReadText(answer));
-        }
-    }
-
-    private void DialogueFadeOut()
-    {
-        // FadeUI(false, 1.0f, 0);
-        unlockableQuestionsGO.SetActive(true);
-    }
-
-    public void OpenQuestions()
-    {
-        unlockableQuestionsGO.SetActive(true);
-    }
-
-    public void CloseQuestions()
-    {
-        unlockableQuestionsGO.SetActive(false);
-    }
-
-    public void SetCurrentCharacter(CharacterData characterDialogue)
+    void SetCurrentCharacter(CharacterData characterDialogue)
     {
         currentCharacter = characterDialogue;
-        nameTMP.text = characterDialogue.GetCharacterDataSO().characterFirstName + " " + characterDialogue.GetCharacterDataSO().characterLastName;
-        var profile = SinModifier.instance.GetProfile(characterDialogue.characterSins);
-        characterDialogue.GetDialogueAudio().SetPitch(profile.audioPitch);
+        var template = characterDialogue.GetCharacterTemplate();
+        nameTMP.text = template.characterFirstName + " " + template.characterLastName;
+
+        if (SinModifier.instance != null)
+        {
+            var profile = SinModifier.instance.GetProfile(characterDialogue.characterSins);
+            var audio = characterDialogue.GetDialogueAudio();
+            if (audio != null)
+                audio.SetPitch(profile.audioPitch);
+        }
     }
 
-    public CharacterData GetCurrentCharacter()
-    {
-        return currentCharacter;
-    }
+    public CharacterData GetCurrentCharacter() => currentCharacter;
+
+    // ── Event subscriptions ─────────────────────────────────────────
 
     void OnEnable()
     {
-        animatedText.onDialogueFinish.AddListener(DialogueFadeOut);
+        animatedText.onDialogueFinish.AddListener(OnLineFinished);
     }
 
     void OnDisable()

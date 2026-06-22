@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private Button testButton;
+    [SerializeField] private Button triggerButton;
     private CharacterData characterDialogue;
 
     void Awake()
@@ -13,19 +13,16 @@ public class DialogueTrigger : MonoBehaviour
 
     void OnDialogueTrigger()
     {
-        DialogueManager.instance.SetCurrentCharacter(characterDialogue);
-        DialogueManager.instance.inDialog = true;
-        DialogueManager.instance.ClearText();
-        DialogueManager.instance.FadeUI(true, 0.2f, 0);
+        DialogueManager.instance.StartConversation(characterDialogue);
     }
     
     void OnEnable()
     {
-        testButton.onClick.AddListener(() => OnDialogueTrigger());
+        triggerButton.onClick.AddListener(() => OnDialogueTrigger());
     }
 
     void OnDisable()
     {
-        testButton.onClick.RemoveAllListeners();
+        triggerButton.onClick.RemoveAllListeners();
     }
 }

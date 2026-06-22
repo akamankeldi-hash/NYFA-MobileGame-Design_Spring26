@@ -2,9 +2,21 @@ using UnityEngine;
 
 public class SinModifier : MonoBehaviour
 {
-    public static SinModifier instance;
+    private static SinModifier _instance;
+    public static SinModifier instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindAnyObjectByType<SinModifier>();
+            return _instance;
+        }
+    }
 
-    void Awake() => instance = this;
+    void Awake()
+    {
+        _instance = this;
+    }
 
     public struct SinProfile
     {

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: James_Blonde
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: James
+  characterLastName: Blonde
+  characterAge: 35
+  traitJob: Secret Agent (Self-Proclaimed)
+  traitCauseOfDeath: Accidentally sat on his own disguised explosive pen while flirting
+    with a bartender.
+  traitPersonality: Delusional, overly confident, cheesy, and constantly winking
+  characterSin: 7
+  correctVerdictIsHeaven: 0
+  upperBody: 0
+  lowerBody: 0
+  upperBodyMaterial: {fileID: 2100000, guid: e3acf3c34012ca64c9af34a514ac1f37, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 6d8cfdf8f987fb54b99432592c89dcb9, type: 2}
+  activeProps:
+  - prop: 3
+    unlockTarget: 3
+  propMaterialOverrides: []
+  introLines:
+  - "The name\u2019s Blonde. James Blonde. And you must be my welcoming committee"
+  - Is it hot in purgatory, or is it just me?
+  answerWhatHappenedBefore: I was smoothly ordering a martini, giving the beautiful
+    bartender my signature look, when my back pocket suddenly detonated.
+  answerWhatKindOfLife: Dangerous. Thrilling. A life full of international mystery,
+    fast cars, and beautiful distractions.
+  answerWhatWasYourJob: "I protect the world from global threats. Officially, my
+    agency denies my existence. Unofficially? I\u2019m a legend."
+  answerWhatHappenedClothes: A minor wardrobe malfunction during a highly classified
+    operation. Still looks sharp, doesn't it?
+  answerWhyHaveItem: A true agent is always armed. Though this plastic pistol is
+    actually just a water gun I filled with premium cologne.

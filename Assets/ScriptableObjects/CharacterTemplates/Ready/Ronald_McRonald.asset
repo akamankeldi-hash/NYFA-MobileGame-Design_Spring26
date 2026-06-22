@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Ronald_McRonald
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Donald
+  characterLastName: McRonald
+  characterAge: 63
+  traitJob: Bootleg Fast Food CEO
+  traitCauseOfDeath: Slipped on a puddle of counterfeit secret sauce while escaping
+    a health inspector.
+  traitPersonality: Cheap, frantic, paranoid, and obsessed with cutting corners
+  characterSin: 5
+  correctVerdictIsHeaven: 0
+  upperBody: 0
+  lowerBody: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 00d2cb9ae5d53314e85bce976b0dffc5, type: 2}
+  activeProps:
+  - prop: 10
+    unlockTarget: 3
+  propMaterialOverrides: []
+  introLines:
+  - You can't sue me! I don't even officially own those restaurants!
+  - Hey, if you let me go to heaven, I can get you a lifetime supply of Nuggets.
+    No questions asked
+  answerWhatHappenedBefore: I heard sirens outside my office, grabbed my briefcase,
+    sprinted down the back stairs, and took a devastating spill on some spilled grease.
+  answerWhatKindOfLife: An efficient one. Why use real beef when soy filler saves
+    you forty percent on production costs?
+  answerWhatWasYourJob: I provided affordable, highly questionable meals to the masses.
+    I built an empire on cheap ingredients.
+  answerWhatHappenedClothes: Running a multi-million dollar bootleg burger empire
+    is sticky business. This shirt is covered in corporate secrets.
+  answerWhyHaveItem: It's a burger! It's perfectly safe! Well, mostly safe. I wouldn't
+    recommend eating the bun if it's been glowing in the dark.

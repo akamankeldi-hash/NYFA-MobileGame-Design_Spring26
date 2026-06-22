@@ -2,28 +2,47 @@ using UnityEngine;
 
 public class UiFollowTarget : MonoBehaviour
 {
-    [SerializeField] private Transform targetToFollow;
-    // [SerializeField] private 
+    [Header("Chain length range")]
+    [SerializeField] private float maxLength = 1440f;
+    [SerializeField] private float minLength = 300f;
 
     private RectTransform rectTransform;
+    private RectTransform currentTarget;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void UpdateFollowTarget()
-    {
-        if (targetToFollow == null || targetToFollow != HudManager.instance.GetActiveWidget().transform)
-        {
-            targetToFollow = HudManager.instance.GetActiveWidget().transform;
-        }
-    }
-
     void LateUpdate()
     {
-        UpdateFollowTarget();
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 1440.0f + targetToFollow.GetComponent<RectTransform>().position.y);
+        if (HudManager.instance == null) return;
 
+        currentTarget = HudManager.instance.GetActivePanelTransform();
+
+        float targetHeight = CalculateTargetHeight();
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
+    }
+
+    private float CalculateTargetHeight()
+    {
+        if (currentTarget == null)
+            return maxLength;
+
+        float hiddenY = HudManager.instance.GetPanelHiddenY();
+        float panelY = currentTarget.anchoredPosition.y;
+
+        float t = InverseLerpUnclamped(hiddenY, 0f, panelY);
+        return LerpUnclamped(maxLength, minLength, t);
+    }
+
+    private float InverseLerpUnclamped(float a, float b, float value)
+    {
+        return (value - a) / (b - a);
+    }
+
+    private float LerpUnclamped(float a, float b, float t)
+    {
+        return a + (b - a) * t;
     }
 }

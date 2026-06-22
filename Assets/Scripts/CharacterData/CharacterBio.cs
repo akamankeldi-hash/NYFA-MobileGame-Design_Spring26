@@ -5,20 +5,21 @@ public class CharacterBio : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI bioText;
     [SerializeField] private CharacterData charData;
-    private CharacterDataSO charDataSO;
-
-    void Start()
-    {
-        SetBioInfo();
-    }
+    private CharacterTemplateSO template;
 
     public void SetBioInfo()
     {
-        charDataSO = charData.GetCharacterDataSO();
-        bioText.text = "Name: " + charDataSO.characterFirstName + " " + charDataSO.characterLastName +
-        "\nAge: " + charDataSO.traitAge +
-        "\nPersonality: " + charDataSO.traitPersonality +
-        "\nCause of death: " + charDataSO.traitCauseOfDeath +
-        "\nJob: " + charDataSO.traitJob;
+        template = charData.GetCharacterTemplate();
+        if (template == null) return;
+
+        string deathLine = charData.deathRevealed ? template.traitCauseOfDeath : "???";
+        string personalityLine = charData.personalityRevealed ? template.traitPersonality : "???";
+        string jobLine = charData.jobRevealed ? template.traitJob : "???";
+
+        bioText.text = "Name: " + template.characterFirstName + " " + template.characterLastName +
+        "\nAge: " + template.characterAge +
+        "\nPersonality: " + personalityLine +
+        "\nCause of death: " + deathLine +
+        "\nJob: " + jobLine;
     }
 }

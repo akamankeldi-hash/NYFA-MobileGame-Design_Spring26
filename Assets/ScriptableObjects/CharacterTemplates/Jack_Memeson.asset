@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Jack_Memeson
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Jack
+  characterLastName: Memeson
+  characterAge: 67
+  traitJob: Unknown
+  traitCauseOfDeath: Unknown
+  traitPersonality: Unknown
+  characterSin: 2
+  correctVerdictIsHeaven: 0
+  upperBody: 0
+  lowerBody: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 00d2cb9ae5d53314e85bce976b0dffc5, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 6d8cfdf8f987fb54b99432592c89dcb9, type: 2}
+  activeProps: 1500000003000000
+  propMaterialOverrides: []
+  introLines:
+  - ?!
+  answerWhatHappenedBefore: Eh
+  answerWhatKindOfLife: 
+  answerWhatWasYourJob: 
+  answerWhatHappenedClothes: 
+  answerWhyHaveWeapon: 

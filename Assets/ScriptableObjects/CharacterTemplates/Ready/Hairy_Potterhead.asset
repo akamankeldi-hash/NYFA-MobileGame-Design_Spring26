@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Hairy_Potterhead
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Hairy
+  characterLastName: Potterhead
+  characterAge: 27
+  traitJob: Mall Magician
+  traitCauseOfDeath: Tried to swallow a real sword to impress a crowd
+  traitPersonality: Arrogant, theatrical, refuses to admit he has zero magical abilities
+  characterSin: 1
+  correctVerdictIsHeaven: 0
+  upperBody: 0
+  lowerBody: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 00d2cb9ae5d53314e85bce976b0dffc5, type: 2}
+  activeProps:
+  - prop: 21
+    unlockTarget: 3
+  propMaterialOverrides: []
+  introLines:
+  - Abra-ca... wait, where are my flash cotton sparks?
+  - For my next trick, I will make myself vanish from this courtroom! ...Did it work?
+  answerWhatHappenedBefore: The children in the front row were heckling me. I decided
+    to pull out the grand finale early, got distracted by a kid throwing popcorn,
+    and choked
+  answerWhatKindOfLife: A life of pure illusion and wonder! I brought magic to the
+    masses, even if the magic was just cheap smoke bombs and mirrors
+  answerWhatWasYourJob: I am a Master of the Dark Arts! Or, according to my tax returns,
+    a freelance entertainer for children's birthday parties
+  answerWhatHappenedClothes: A true sorcerer never explains his wardrobe. Let's just
+    say a smoke bomb detonated a little too close to my shirt
+  answerWhyHaveItem: This witch hat channels my mystical energies. Without it, I'm
+    just a regular guy in a wrinkled shirt. We can't have that

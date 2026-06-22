@@ -16,4 +16,4 @@ MonoBehaviour:
   Question2Text: What kind of life did you live?
   Question3Text: What was your job?
   Question4Text: What happened to your clothes?
-  Question5Text: Why do you have a knife?
+  Question5Text: Why do you have a {0}?

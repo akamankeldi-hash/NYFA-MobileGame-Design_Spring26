@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class HudManager : MonoBehaviour
 {
@@ -11,31 +12,32 @@ public class HudManager : MonoBehaviour
     [SerializeField] private Button questioningButton;
     [SerializeField] private Button heavenButton;
     [SerializeField] private Button hellButton;
+    [SerializeField] private Color activeColor = Color.white;
+    [SerializeField] private Color inactiveColor = Color.gray;
 
     [Header("Widgets")]
     [SerializeField] private GameObject bioWidget;
     [SerializeField] private GameObject inspectWidget;
     [SerializeField] private GameObject questioningWidget;
     [SerializeField] private GameObject characterModel;
+    [SerializeField] private GameObject finalScoreWidget;
+
     private RectTransform bioWidgetTransform;
     private RectTransform questioningWidgetTransform;
 
     [Header("Animation Variables")]
     [SerializeField] private float panelHiddenY = -1100f;
     [SerializeField] private float panelOpenY = 0f;
+    [SerializeField] private float openDuration = 0.4f;
+    [SerializeField] private float closeDuration = 0.3f;
 
     [Header("Character Rotation")]
     [SerializeField] private InspectSystem inspectSystem;
 
-    [Header("Toast")]
-    [SerializeField] private GameObject propDiscoveredToast;
-    [SerializeField] private TMPro.TextMeshProUGUI propToastText;
-
     private enum HudState { Inspect, BioOpen, Questioning }
     private HudState currentState = HudState.Inspect;
-    private bool bioIsOpen = false;
-    private bool questioningIsOpen = false;
     private bool isAnimating = false;
+    private bool navLocked = false;
 
     void Awake()
     {
@@ -54,32 +56,65 @@ public class HudManager : MonoBehaviour
         EnterInspect(instant: true);
     }
 
-    void OnBioButton()
+    public void SetNavLocked(bool locked)
     {
-        if (isAnimating) return;
+        navLocked = locked;
 
-        if (bioIsOpen)
+        bioButton.interactable = !locked;
+        questioningButton.interactable = !locked;
+        heavenButton.interactable = !locked && VerdictManager.instance.CanJudge();
+        if(heavenButton.interactable)
         {
-            CloseBio();
+            heavenButton.GetComponentInChildren<Image>().color = activeColor;
         }
         else
         {
-            OpenBio();
+            heavenButton.GetComponentInChildren<Image>().color = inactiveColor;
+        }
+        hellButton.interactable = !locked && VerdictManager.instance.CanJudge();
+        if(hellButton.interactable)
+        {
+            hellButton.GetComponentInChildren<Image>().color = activeColor;
+        }
+        else
+        {
+            hellButton.GetComponentInChildren<Image>().color = inactiveColor;
+        }
+    }
+
+    void OnBioButton()
+    {
+        if (isAnimating || navLocked) return;
+
+        if (currentState == HudState.BioOpen)
+        {
+            ClosePanel(bioWidgetTransform, () => EnterInspect());
+        }
+        else if (currentState == HudState.Questioning)
+        {
+            ClosePanel(questioningWidgetTransform, () => OpenPanel(HudState.BioOpen, bioWidgetTransform));
+        }
+        else
+        {
+            OpenPanel(HudState.BioOpen, bioWidgetTransform);
         }
     }
 
     void OnQuestioningButton()
     {
-        Debug.Log("Click Questioning?");
-        if (isAnimating) return;
+        if (isAnimating || navLocked) return;
 
-        if (questioningIsOpen)
+        if (currentState == HudState.Questioning)
         {
-            CloseQuestioning();
+            ClosePanel(questioningWidgetTransform, () => EnterInspect());
+        }
+        else if (currentState == HudState.BioOpen)
+        {
+            ClosePanel(bioWidgetTransform, () => OpenPanel(HudState.Questioning, questioningWidgetTransform));
         }
         else
         {
-            OpenQuestioning();
+            OpenPanel(HudState.Questioning, questioningWidgetTransform);
         }
     }
 
@@ -88,99 +123,80 @@ public class HudManager : MonoBehaviour
         currentState = HudState.Inspect;
 
         inspectWidget.SetActive(true);
-        // questioningWidget.SetActive(false);
         characterModel.SetActive(true);
         SetRotationEnabled(true);
 
         if (instant)
         {
-            bioWidgetTransform.anchoredPosition = new Vector2(bioWidgetTransform.anchoredPosition.x, panelHiddenY);
-            questioningWidgetTransform.anchoredPosition = new Vector2(questioningWidgetTransform.anchoredPosition.x, panelHiddenY);
+            SetY(bioWidgetTransform, panelHiddenY);
+            SetY(questioningWidgetTransform, panelHiddenY);
         }
-    }    
+    }
 
-    void OpenBio()
+    void OpenPanel(HudState targetState, RectTransform panel)
     {
         isAnimating = true;
-        currentState = HudState.BioOpen;
-        bioIsOpen = true;
+        currentState = targetState;
 
         inspectWidget.SetActive(false);
-        // questioningWidget.SetActive(false);
         characterModel.SetActive(false);
         SetRotationEnabled(false);
 
-        bioWidgetTransform.DOAnchorPosY(panelOpenY, 0.4f).SetEase(Ease.OutBack).OnComplete(() => isAnimating = false);
+        panel.DOAnchorPosY(panelOpenY, openDuration)
+            .SetEase(Ease.OutBack)
+            .OnComplete(() => isAnimating = false);
     }
 
-    void CloseBio()
+    void ClosePanel(RectTransform panel, System.Action onClosed)
     {
         isAnimating = true;
-        bioIsOpen = false;
 
-        bioWidgetTransform.DOAnchorPosY(panelHiddenY, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
-        {
-            isAnimating = false;
-            EnterInspect();
-        });
+        panel.DOAnchorPosY(panelHiddenY, closeDuration)
+            .SetEase(Ease.InBack)
+            .OnComplete(() =>
+            {
+                isAnimating = false;
+                onClosed?.Invoke();
+            });
     }
 
-    void OpenQuestioning()
+    void SetRotationEnabled(bool isEnabled)
     {
-        currentState = HudState.Questioning;
-        isAnimating = true;
-        questioningIsOpen = true;
+        if (inspectSystem == null) return;
 
-        inspectWidget.SetActive(false);
-        // questioningWidget.SetActive(true);
-        characterModel.SetActive(false);
-        SetRotationEnabled(false);
-
-        questioningWidgetTransform.DOAnchorPosY(panelOpenY, 0.4f).SetEase(Ease.OutBack).OnComplete(() => isAnimating = false);
-    }
-
-    void CloseQuestioning()
-    {
-        questioningIsOpen = false;
-        isAnimating = true;
-        // questioningIsOpen = false;
-
-        questioningWidgetTransform.DOAnchorPosY(panelHiddenY, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
-        {
-            isAnimating = false;
-            EnterInspect();
-        });
-    }
-
-    void SetRotationEnabled(bool enabled)
-    {
         inspectSystem.ResetRotation();
-
-        if (inspectSystem != null)
-        {
-            inspectSystem.enabled = enabled;
-        }
+        inspectSystem.enabled = isEnabled;
     }
 
-    public void ShowPropDiscoveredToast(E_PropType propType)
+    void SetY(RectTransform rect, float y)
     {
-        if (propDiscoveredToast == null) return;
-
-        propToastText.text = $"New question unlocked!";
-        propDiscoveredToast.SetActive(true);
-
-        DOVirtual.DelayedCall(2f, () =>
-        {
-            if (propDiscoveredToast != null)
-                propDiscoveredToast.SetActive(false);
-        });
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, y);
     }
 
-    public GameObject GetActiveWidget() => currentState switch
+    public RectTransform GetActivePanelTransform() => currentState switch
     {
-        HudState.BioOpen => bioWidget,
-        HudState.Inspect => bioWidget,
-        HudState.Questioning => questioningWidget,
+        HudState.BioOpen => bioWidgetTransform,
+        HudState.Questioning => questioningWidgetTransform,
         _ => null
     };
+
+    public float GetPanelHiddenY() => panelHiddenY;
+
+    public GameObject GetCharacterModel() => characterModel;
+
+    public void ForceCloseAll()
+    {
+        if (currentState == HudState.BioOpen)
+            ClosePanel(bioWidgetTransform, () => EnterInspect());
+        else if (currentState == HudState.Questioning)
+            ClosePanel(questioningWidgetTransform, () => EnterInspect());
+        else
+            EnterInspect();
+    }
+
+    public void ShowFinalScore(int score)
+    {
+        finalScoreWidget.SetActive(true);
+        finalScoreWidget.GetComponentInChildren<TextMeshProUGUI>().text = "Final Score: " + score;
+    }
 }

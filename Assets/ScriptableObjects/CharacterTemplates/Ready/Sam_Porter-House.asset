@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Sam_Porter-House
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Sam
+  characterLastName: Porter-House
+  characterAge: 33
+  traitJob: Package Courier
+  traitCauseOfDeath: Died of exhaustion while walking up 50 flights of stairs to
+    deliver a critical organ transplant package
+  traitPersonality: Obsessively dedicated, brutally honest, fiercely reliable, and
+    completely humble
+  characterSin: 0
+  correctVerdictIsHeaven: 1
+  upperBody: 1
+  lowerBody: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
+  activeProps:
+  - prop: 11
+    unlockTarget: 3
+  propMaterialOverrides: []
+  introLines:
+  - Package for... wait. This isn't the hospital roof
+  - My legs finally stopped burning. That's a good sign, right?
+  answerWhatHappenedBefore: The hospital elevators failed during a blackout. I had
+    a cooler with a donor heart. I ran up every single flight of stairs, handed it
+    to the surgeon, and my lungs just collapsed
+  answerWhatKindOfLife: I just delivered boxes. Nothing fancy. I always made sure
+    people got what they ordered, no matter what
+  answerWhatWasYourJob: I literally ran up fifty flights of concrete stairs carrying
+    heavy gear. I am drenched in sweat and covered in dust from the stairwell
+  answerWhatHappenedClothes: I literally ran up fifty flights of concrete stairs
+    carrying heavy gear. I am drenched in sweat and covered in dust from the stairwell
+  answerWhyHaveItem: This medical bag contains the temperature-controlled delivery
+    pod. It saved a life today, so please handle it with care

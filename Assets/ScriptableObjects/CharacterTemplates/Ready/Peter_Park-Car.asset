@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Peter_Park-Car
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Peter
+  characterLastName: Park-Car
+  characterAge: 63
+  traitJob: Birthday Party Entertainer
+  traitCauseOfDeath: Slipped while trying to catch a toddler falling out of a bouncy
+    castle, taking the impact himself
+  traitPersonality: Awkward, incredibly selfless, apologetic, and pure-hearted
+  characterSin: 0
+  correctVerdictIsHeaven: 1
+  upperBody: 1
+  lowerBody: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 00d2cb9ae5d53314e85bce976b0dffc5, type: 2}
+  activeProps:
+  - prop: 18
+    unlockTarget: 5
+  propMaterialOverrides: []
+  introLines:
+  - Oh, wow. Is the party over? Did the kid make it?
+  - I am so sorry if I'm dripping water on your floor, my boots are full of it
+  answerWhatHappenedBefore: A little kid bounced way too high and was flying over
+    the safety wall. I dove to catch him, caught him perfectly, but cracked my head
+    right on a concrete garden gnome
+  answerWhatKindOfLife: Busy, kind of exhausting, but nice. I spent most of my time
+    trying to make children smile and helping my aunt with her rent
+  answerWhatWasYourJob: I dressed up as a bootleg spider-hero for low-budget children's
+    parties. The fabric was incredibly itchy
+  answerWhatHappenedClothes: I didn't even have time to change out of my work outfit.
+    It's wrinkled and smells faintly of juice boxes and sweat
+  answerWhyHaveItem: It's a plastic kid's colored hat from the party! I was holding
+    it for the birthday boy. Can you make sure he gets it back?

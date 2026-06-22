@@ -1,74 +1,55 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterDataGeneration : MonoBehaviour
 {
     public static CharacterDataGeneration instance;
+
+    [Header("Template pool")]
+    [SerializeField] private List<CharacterTemplateSO> templatePool;
+
+    [Header("Scene components")]
     [SerializeField] private CharacterData characterData;
-    [SerializeField] private CharacterTemplateSO[] templatePool;
-    [SerializeField] private PropItem[] propItems;
+    [SerializeField] private CharacterAppearanceApplier appearanceApplier;
+
     private CharacterTemplateSO currentTemplate;
 
-    void Awake()
-    {
-        instance = this;
-    }
+    void Awake() => instance = this;
 
-    void Start()
-    {
-        GenerateCharacter();
-    }
+    void Start() => GenerateCharacter();
 
-    private void GenerateCharacter()
+    [ContextMenu("Regenerate Character")]
+    public void GenerateCharacter()
     {
-        if (templatePool != null || templatePool.Length == 0)
+        if (templatePool == null || templatePool.Count == 0)
         {
-            Debug.LogError("Template Pool is empty");
+            HudManager.instance.ShowFinalScore(VerdictManager.instance.GetScore());
+            // Debug.LogError("[CharacterDataGeneration] Template pool is empty.");
             return;
         }
 
-        currentTemplate = templatePool[Random.Range(0, templatePool.Length)];
-        ApplyTemplate(currentTemplate);
+        int index = Random.Range(0, templatePool.Count);
+        currentTemplate = templatePool[index];
+        templatePool.RemoveAt(index);
+
+        Apply(currentTemplate);
+    }
+
+    public void GenerateSpecific(CharacterTemplateSO template)
+    {
+        templatePool.Remove(template);
+        currentTemplate = template;
+        Apply(template);
     }
 
     public CharacterTemplateSO GetCurrentTemplate() => currentTemplate;
 
-    private void ApplyTemplate(CharacterTemplateSO template)
+    private void Apply(CharacterTemplateSO t)
     {
-        characterData.SetData(template);
-        
-        ResetAllProps();
-        ActivateProps(template.activeProps);
-    }
+        characterData.SetData(t);
+        appearanceApplier.Apply(t);
+        DialogueManager.instance.StartConversation(characterData);
 
-    private void ResetAllProps()
-    {
-        foreach (var prop in propItems)
-        {
-            if(prop != null)
-            {
-                prop.gameObject.SetActive(false);
-                prop.ResetProp();
-            }
-        }
-    }
-
-    private void ActivateProps(E_PropType[] activeProps)
-    {
-        if(activeProps == null) return;
-        
-        foreach(var propType in activeProps)
-        {
-            int index = (int)propType;
-            if(index < propItems.Length && propItems[index] != null)
-            {
-                propItems[index].gameObject.SetActive(true);
-            }
-        }
-    }
-
-    public static E_CharacterSins RollSin()
-    {
-        if (Random.value > 0.20f) return E_CharacterSins.None;
-        return (E_CharacterSins)Random.Range(1,8);
+        Debug.Log($"[Gen] {t.characterFirstName} {t.characterLastName} | {t.traitJob} | Sin: {t.characterSin} | Remaining: {templatePool.Count}");
     }
 }
