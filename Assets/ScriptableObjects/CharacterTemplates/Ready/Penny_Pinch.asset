@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Penny_Pinch
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Penny
+  characterLastName: Pinch
+  characterAge: 11
+  traitJob: Lemonade Stand Entrepreneur
+  traitCauseOfDeath: Crushed by a giant wooden sign she built to advertise her lemonade
+    across the street from a rival kid's stand
+  traitPersonality: Ruthless, hyper-capitalist, entirely profit-driven, sees everything
+    as a transaction
+  characterSin: 5
+  correctVerdictIsHeaven: 1
+  upperBody: 1
+  lowerBody: 0
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 5263163200658e340a8adf700274873f, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 05dd8ce5e76c31b43af60c8428b9f6f4, type: 2}
+  activeProps:
+  - prop: 8
+    unlockTarget: 5
+  propMaterialOverrides: []
+  introLines:
+  - I'm losing precious market hours right now. Let's make a deal
+  - How much does a ticket to heaven cost? I have cash on hand
+  answerWhatHappenedBefore: I was putting up a massive, high-visibility wooden billboard
+    over my lemonade stand. The wind caught it, the structural support snapped, and
+    the whole thing collapsed right on top of my inventory.
+  answerWhatKindOfLife: Efficient and highly scalable. I drove the neighborhood kids
+    out of business by undercutting their prices using cheap powdered mix instead
+    of real lemons
+  answerWhatWasYourJob: I was the CEO and sole shareholder of Penny's Premium Refreshments.
+    I controlled the entire block's beverage market
+  answerWhatHappenedClothes: My shirt has a few yellow stains on it. It's an operational
+    hazard when you are mixing bulk batches of lemonade product
+  answerWhyHaveItem: Money makes the world go 'round, even in this place. I brought
+    this handful of quarters to secure a premium tier spot in the afterlife

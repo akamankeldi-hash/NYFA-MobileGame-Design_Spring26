@@ -22,8 +22,9 @@ MonoBehaviour:
   correctVerdictIsHeaven: 0
   upperBody: 0
   lowerBody: 0
-  upperBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
-  lowerBodyMaterial: {fileID: 2100000, guid: 00d2cb9ae5d53314e85bce976b0dffc5, type: 2}
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 94003bd928613864e878ec54d0f2f302, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: b8f22f375751cfa45a8359784ebdd67a, type: 2}
   activeProps:
   - prop: 21
     unlockTarget: 3

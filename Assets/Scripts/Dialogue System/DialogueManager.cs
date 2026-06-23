@@ -52,6 +52,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartConversation(CharacterData character)
     {
+        Debug.Log("Dialogue Started");
         SetCurrentCharacter(character);
         inDialog = true;
         dialogueIndex = 0;
@@ -83,6 +84,8 @@ public class DialogueManager : MonoBehaviour
         {
             sequence.AppendCallback(() =>
             {
+                inDialog = true;
+                canExit = false;
                 ShowBubble(() => animatedText.ReadText(answer));
             });
         }

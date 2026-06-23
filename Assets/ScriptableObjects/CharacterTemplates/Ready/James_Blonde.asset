@@ -21,10 +21,11 @@ MonoBehaviour:
   traitPersonality: Delusional, overly confident, cheesy, and constantly winking
   characterSin: 7
   correctVerdictIsHeaven: 0
-  upperBody: 0
+  upperBody: 1
   lowerBody: 0
-  upperBodyMaterial: {fileID: 2100000, guid: e3acf3c34012ca64c9af34a514ac1f37, type: 2}
-  lowerBodyMaterial: {fileID: 2100000, guid: 6d8cfdf8f987fb54b99432592c89dcb9, type: 2}
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 9040ffdd06e5b0b46a1125db179d26cd, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: e55eaefd11e67c84a9c92226156d3794, type: 2}
   activeProps:
   - prop: 3
     unlockTarget: 3

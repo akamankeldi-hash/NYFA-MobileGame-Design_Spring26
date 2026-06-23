@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Major_Disaster
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Major
+  characterLastName: Disaster
+  characterAge: 51
+  traitJob: Bunker Enthusiast
+  traitCauseOfDeath: Forgot the combination to his own airtight bunker lock and suffocated
+    outside it
+  traitPersonality: Paranoid, conspiratorial, bitter that the world didn't actually
+    end when he predicted it
+  characterSin: 2
+  correctVerdictIsHeaven: 0
+  upperBody: 1
+  lowerBody: 0
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 8c405b5bc259eb840ae30f6c8b652c43, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 1e1b74677d142d14c981ef8aff6345ab, type: 2}
+  activeProps:
+  - prop: 7
+    unlockTarget: 3
+  - prop: 1
+    unlockTarget: 5
+  propMaterialOverrides: []
+  introLines:
+  - I knew it! The government grid finally collapsed!
+  - Where are your hazmat suits? This radiation level must be off the charts
+  answerWhatHappenedBefore: I heard a loud thud outside, thought the apocalypse had
+    finally arrived, ran to my bunker, but blanked on my password. The airtight seals
+    locked me out instead of in
+  answerWhatKindOfLife: A watchful one. While my neighbors wasted their money on
+    vacations and nice cars, I spent every penny on canned beans and ammo
+  answerWhatWasYourJob: I was a self-employed tactical survival consultant. Mostly
+    I just made online videos lecturing people about the end times
+  answerWhatHappenedClothes: My shirt is rumpled and sweaty from spending twelve
+    hours scratching the steel door of my bunker trying to guess my birthday backwards
+  answerWhyHaveItem: A survivalist always keeps an axe handy. It's for clearing debris,
+    gathering timber, or dealing with mutant raiders

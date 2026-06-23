@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Sherlock_Homeboy
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Sherlock
+  characterLastName: Homeboy
+  characterAge: 32
+  traitJob: Consulting Detective
+  traitCauseOfDeath: Died of exposure while hiding inside a freezing industrial refrigerator
+    for three days just to prove a point during a trivial investigation
+  traitPersonality: Completely eccentric, overly analytical, fiercely loyal to his
+    friends, and entirely harmless
+  characterSin: 0
+  correctVerdictIsHeaven: 1
+  upperBody: 0
+  lowerBody: 0
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 5462f087a60bbb8468c88834a5be82ef, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: b8f22f375751cfa45a8359784ebdd67a, type: 2}
+  activeProps:
+  - prop: 14
+    unlockTarget: 3
+  propMaterialOverrides: []
+  introLines:
+  - Fascinating! The dust patterns on your scales indicate you had a turkey sandwich
+    for lunch at exactly 12:15
+  - The case of my sudden demise is elementary! Though, admittedly, slightly embarrassing
+  answerWhatHappenedBefore: I was tracking a highly suspicious character who stole
+    a local bakery's prized sourdough starter. I staked out the kitchen, hid inside
+    the commercial freezer unit, and the latch accidentally clicked shut from the
+    outside
+  answerWhatKindOfLife: Brilliant, observational, and completely dedicated to solving
+    the neighborhood's smallest mysteries without ever asking for a single penny
+    in return
+  answerWhatWasYourJob: I am a master consultant of deduction! I find lost house
+    keys, track down missing alley cats, and expose kids who cheat at hide-and-seek
+  answerWhatHappenedClothes: My shirt is completely stiff and covered in white frost
+    lines because I spent seventy-two hours sitting right next to a bulk crate of
+    frozen peas
+  answerWhyHaveItem: 

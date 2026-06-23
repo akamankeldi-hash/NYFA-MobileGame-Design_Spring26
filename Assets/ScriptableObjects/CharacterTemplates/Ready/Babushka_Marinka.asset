@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Babushka_Marinka
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Babushka
+  characterLastName: Marinka
+  characterAge: 88
+  traitJob: Friendly Neighborhood Grandma
+  traitCauseOfDeath: Passed away peacefully in her sleep after baking 400 pies for
+    the local charity drive
+  traitPersonality: Incredibly sweet, forces food on people, treats the judge like
+    her own grandchild
+  characterSin: 0
+  correctVerdictIsHeaven: 1
+  upperBody: 0
+  lowerBody: 1
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 17f5845728c0fb24bac7212fe4a532d3, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 38657d89924da4742b87abe72e163c95, type: 2}
+  activeProps:
+  - prop: 13
+    unlockTarget: 3
+  - prop: 10
+    unlockTarget: 5
+  propMaterialOverrides: []
+  introLines:
+  - I knew it! The government grid finally collapsed!
+  - Where are your hazmat suits? This radiation level must be off the charts
+  answerWhatHappenedBefore: I finished cleaning up the flour from the kitchen, lay
+    down in my favorite armchair for a tiny afternoon nap, and woke up looking at
+    your beautiful face
+  answerWhatKindOfLife: A full house, a warm oven, and lots of love. I spent my days
+    making sure nobody in my neighborhood ever went to bed hungry
+  answerWhatWasYourJob: I raised five children, twelve grandchildren, and fed every
+    stray cat and college student on my block for fifty years
+  answerWhatHappenedClothes: My shirt is covered in flour and powdered sugar. I was
+    baking all morning, you see
+  answerWhyHaveItem: I brought this fresh burger because you look like you need a
+    proper meal! Purgatory is no place to keep an empty stomach

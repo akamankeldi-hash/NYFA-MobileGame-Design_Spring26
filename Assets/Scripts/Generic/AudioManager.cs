@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
         audioSource.outputAudioMixerGroup = sfxMixerGroup;
     }
 
-        public static void PlaySound(SoundType sound)
+    public static void PlaySound(SoundType sound)
     {
         AudioClip[] clips = sound switch
         {

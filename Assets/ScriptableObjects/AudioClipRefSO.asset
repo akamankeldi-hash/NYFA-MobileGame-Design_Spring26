@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b483179f8c71c45b28dfae82d18772, type: 3}
   m_Name: AudioClipRefSO
   m_EditorClassIdentifier: Assembly-CSharp::AudioClipRefSO
-  VerdictHeaven: []
-  VerdictHell: []
+  VerdictHeaven:
+  - {fileID: 8300000, guid: 8a5def673b4de4e449704eed4c414e39, type: 3}
+  VerdictHell:
+  - {fileID: 8300000, guid: cf3d776eb0348e047b8b4b11ca567717, type: 3}

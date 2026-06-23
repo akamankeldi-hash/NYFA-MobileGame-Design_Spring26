@@ -22,6 +22,8 @@ public class HudManager : MonoBehaviour
     [SerializeField] private GameObject characterModel;
     [SerializeField] private GameObject finalScoreWidget;
 
+    [SerializeField] private GameObject bioBackground;
+
     private RectTransform bioWidgetTransform;
     private RectTransform questioningWidgetTransform;
 
@@ -115,6 +117,7 @@ public class HudManager : MonoBehaviour
         else
         {
             OpenPanel(HudState.Questioning, questioningWidgetTransform);
+            bioBackground.SetActive(false);
         }
     }
 
@@ -125,6 +128,7 @@ public class HudManager : MonoBehaviour
         inspectWidget.SetActive(true);
         characterModel.SetActive(true);
         SetRotationEnabled(true);
+        bioBackground.SetActive(true);
 
         if (instant)
         {

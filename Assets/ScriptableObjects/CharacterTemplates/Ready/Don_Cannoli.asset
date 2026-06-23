@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Don_Cannoli
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Don
+  characterLastName: Cannoli
+  characterAge: 54
+  traitJob: Underground Syndicate Leader
+  traitCauseOfDeath: Slipped on a puddle of olive oil while trying to do a cool mobster
+    walk
+  traitPersonality: Overly dramatic, speaks in a raspy whisper, paranoid about wiretaps
+  characterSin: 1
+  correctVerdictIsHeaven: 0
+  upperBody: 0
+  lowerBody: 0
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 1093e1cebfec8434382aa1214c97e69e, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 3a67d1f6ca31ca0408d7df9b736e506b, type: 2}
+  activeProps:
+  - prop: 0
+    unlockTarget: 0
+  - prop: 15
+    unlockTarget: 0
+  propMaterialOverrides: []
+  introLines:
+  - You come to me... on the day of my afterlife judgment... and ask for paperwork?
+  - Keep your voice down. The walls have ears, kid
+  answerWhatHappenedBefore: I was walking into my favorite restaurant to collect
+    some... protection fees. I hit a patch of freshly spilled extra virgin olive
+    oil, my feet went completely airborne, and I landed square on my back
+  answerWhatKindOfLife: A life of respect and family values. If people occasionally
+    lost their storefronts because they couldn't afford our premium friendship taxes,
+    that's just business
+  answerWhatWasYourJob: I ran the family operation. We controlled the distribution
+    of premium baked goods and controlled the local corner stores with an iron fist
+  answerWhatHappenedClothes: This silk shirt is covered in grease and dust because
+    I spent twenty minutes rolling around on the restaurant kitchen floor trying
+    to scramble back to my feet
+  answerWhyHaveItem: This meat cleaver? It's just for... cutting the lasagna. Very
+    thick lasagna. You can't blame a businessman for traveling prepared to eat

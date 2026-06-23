@@ -6,7 +6,7 @@ public class PropItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private E_PropPiece propType;
     [SerializeField] private GameObject glowIndicator;
-    [SerializeField] private float punchScale = 0.025f;
+    [SerializeField] private float punchScale = 0.01f;
     [SerializeField] private float punchDuration = 0.3f;
     [SerializeField] private int punchVibrato = 5;
     [SerializeField] private float punchElasticity = 0.5f;

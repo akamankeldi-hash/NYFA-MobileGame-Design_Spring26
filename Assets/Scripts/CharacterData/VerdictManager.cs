@@ -75,6 +75,8 @@ public class VerdictManager : MonoBehaviour
         var template = CharacterDataGeneration.instance.GetCurrentTemplate();
         if (template != null)
         {
+            SoundType soundToPlay = (sentToHeaven ? SoundType.VerdictHeaven : SoundType.VerdictHell);
+            AudioManager.PlaySound(soundToPlay);
             bool wasCorrect = sentToHeaven == template.correctVerdictIsHeaven;
             score += wasCorrect ? correctVerdictPoints : wrongVerdictPoints;
             Debug.Log($"[VerdictManager] {(sentToHeaven ? "Heaven" : "Hell")} | {template.characterFirstName} {template.characterLastName} | {(wasCorrect ? "Correct" : "Wrong")} | Score: {score}");

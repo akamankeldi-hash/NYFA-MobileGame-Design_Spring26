@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa5898a168059408b69df16b068a99, type: 3}
+  m_Name: Sid_Toy-Breaker
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
+  characterFirstName: Sid
+  characterLastName: Toy-Breaker
+  characterAge: 9
+  traitJob: Playground Menace
+  traitCauseOfDeath: Licked a freezing cold metal swing set pole on a dare and couldn't
+    get unstuck before a blizzard hit
+  traitPersonality: Mean, loud, takes other kids' lunch money, easily angered
+  characterSin: 3
+  correctVerdictIsHeaven: 1
+  upperBody: 1
+  lowerBody: 0
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 5263163200658e340a8adf700274873f, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 05dd8ce5e76c31b43af60c8428b9f6f4, type: 2}
+  activeProps:
+  - prop: 0
+    unlockTarget: 5
+  - prop: 18
+    unlockTarget: 3
+  propMaterialOverrides: []
+  introLines:
+  - Give me your lunch money or I'm telling my big brother!
+  - This room is stupid and you look stupid too!
+  answerWhatHappenedBefore: Someone said I didn't have the guts to put my tongue
+    on the big frozen pole. I did it, got stuck, screamed for help, but everyone
+    thought I was just throwing a tantrum
+  answerWhatKindOfLife: A chaotic one. I ruled the sandbox with an iron fist and
+    made sure nobody else got to use the good yellow plastic shovel
+  answerWhatWasYourJob: I was the self-appointed king of the recess yard. I managed
+    the black market trade of trading cards and juice boxes
+  answerWhatHappenedClothes: My clothes are torn up because I got into three different
+    fistfights during recess over a game of four-square
+  answerWhyHaveItem: This baseball bat is my enforcement tool! I use it to smash
+    sandcastles that other kids build without my permission

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterTemplateSO
   characterFirstName: Peter
   characterLastName: Park-Car
-  characterAge: 63
+  characterAge: 67
   traitJob: Birthday Party Entertainer
   traitCauseOfDeath: Slipped while trying to catch a toddler falling out of a bouncy
     castle, taking the impact himself
@@ -23,10 +23,11 @@ MonoBehaviour:
   correctVerdictIsHeaven: 1
   upperBody: 1
   lowerBody: 0
-  upperBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
-  lowerBodyMaterial: {fileID: 2100000, guid: 00d2cb9ae5d53314e85bce976b0dffc5, type: 2}
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 9040ffdd06e5b0b46a1125db179d26cd, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 3a67d1f6ca31ca0408d7df9b736e506b, type: 2}
   activeProps:
-  - prop: 18
+  - prop: 2
     unlockTarget: 5
   propMaterialOverrides: []
   introLines:

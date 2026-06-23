@@ -23,11 +23,16 @@ MonoBehaviour:
   correctVerdictIsHeaven: 0
   upperBody: 0
   lowerBody: 0
-  upperBodyMaterial: {fileID: 2100000, guid: 4ab22ddb73955864db305340f91e00bb, type: 2}
-  lowerBodyMaterial: {fileID: 2100000, guid: 00d2cb9ae5d53314e85bce976b0dffc5, type: 2}
+  face: 0
+  upperBodyMaterial: {fileID: 2100000, guid: 17f5845728c0fb24bac7212fe4a532d3, type: 2}
+  lowerBodyMaterial: {fileID: 2100000, guid: 05dd8ce5e76c31b43af60c8428b9f6f4, type: 2}
   activeProps:
   - prop: 10
+    unlockTarget: 5
+  - prop: 4
     unlockTarget: 3
+  - prop: 15
+    unlockTarget: 0
   propMaterialOverrides: []
   introLines:
   - You can't sue me! I don't even officially own those restaurants!
