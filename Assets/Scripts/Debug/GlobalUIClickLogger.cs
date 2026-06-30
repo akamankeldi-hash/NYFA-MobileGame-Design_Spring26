@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Text;
 
+// AI Generated script, cause debugging was taking too long, and dead line was coming :\
+
 public class GlobalUIClickLogger : MonoBehaviour
 {
     private void Update()
@@ -24,10 +26,8 @@ public class GlobalUIClickLogger : MonoBehaviour
                 {
                     GameObject clickedUIObject = results[0].gameObject;
                     
-                    // Get the full breadcrumb path
                     string fullHierarchyPath = GetFullHierarchyPath(clickedUIObject.transform);
 
-                    // Log the structural path to the console
                     Debug.Log($"[UI Hierarchy Debug] Clicked Element Path:\n{fullHierarchyPath}", clickedUIObject);
                 }
             }
@@ -36,17 +36,14 @@ public class GlobalUIClickLogger : MonoBehaviour
 
     private string GetFullHierarchyPath(Transform currentTransform)
     {
-        // Using StringBuilder is highly performant for string accumulation
         StringBuilder pathBuilder = new StringBuilder(currentTransform.name);
 
-        // Keep stepping up to parent transforms until hitting the scene root
         while (currentTransform.parent != null)
         {
             currentTransform = currentTransform.parent;
-            // Insert the parent name at the beginning of the path
             pathBuilder.Insert(0, currentTransform.name + " > ");
         }
-
+        
         return pathBuilder.ToString();
     }
 }

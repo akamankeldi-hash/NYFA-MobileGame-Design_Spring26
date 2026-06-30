@@ -57,7 +57,6 @@ public class VerdictManager : MonoBehaviour
 
     public void TryVerdict(bool sentToHeaven)
     {
-        // Must have asked at least one question
         if (questionsAsked == 0)
         {
             Debug.Log("[VerdictManager] Can't judge — no questions asked yet.");
@@ -67,11 +66,9 @@ public class VerdictManager : MonoBehaviour
         if (isAnimating) return;
         isAnimating = true;
 
-        // Close any open panels and dialogue first
         HudManager.instance.ForceCloseAll();
         DialogueManager.instance.ForceClose();
 
-        // Score
         var template = CharacterDataGeneration.instance.GetCurrentTemplate();
         if (template != null)
         {

@@ -7391,7 +7391,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d6a3c174c5d7d1245a1c3a2791d64099, type: 2}
     - target: {fileID: -4504351001731026914, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4143749023669616219, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_IsActive
@@ -7431,7 +7431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 357344144889231236, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_Name
@@ -7447,7 +7447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1476956783274514560, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2429421019383328222, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_IsActive
@@ -7495,7 +7495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6038523790353205665, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7328023618940357465, guid: d5fead5aafb64114bb6a8437fae6a783, type: 3}
       propertyPath: m_IsActive
@@ -8235,8 +8235,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.20093486, y: 0.6520731, z: 0.20155716}
-  m_Center: {x: 0.00037063396, y: -0.17540827, z: -0.00068186986}
+  m_Size: {x: 0.0020093503, y: 0.0020155732, z: 0.006520733}
+  m_Center: {x: 0.000003705679, y: 0.000006818071, z: -0.0017540832}
 --- !u!114 &1026305334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9114,8 +9114,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.37486306, y: 0.042611502, z: 0.23859991}
-  m_Center: {x: 0.002219023, y: -0.01775508, z: 0.00011636968}
+  m_Size: {x: 0.00374863, y: 0.0023859995, z: 0.00042611588}
+  m_Center: {x: 0.000022190681, y: -0.000001163428, z: -0.00017755215}
 --- !u!1 &1244310054
 GameObject:
   m_ObjectHideFlags: 0
@@ -9271,8 +9271,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1605846, y: 0.05924558, z: 0.1627402}
-  m_Center: {x: 0.000000003725347, y: -0.012251458, z: -0.0018179712}
+  m_Size: {x: 0.0016058459, y: 0.0016274021, z: 0.0005924557}
+  m_Center: {x: 5.820766e-11, y: 0.000018181601, z: -0.00012251524}
 --- !u!114 &1246636361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9310,8 +9310,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.14192571, y: 0.29342887, z: 0.25114602}
-  m_Center: {x: 0.008255914, y: -0.12641056, z: 0.034690626}
+  m_Size: {x: 0.001419257, y: 0.0025114606, z: 0.0029342885}
+  m_Center: {x: 0.00008255913, y: -0.0003469063, z: -0.001264103}
 --- !u!114 &1252972874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9349,8 +9349,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.023206847, y: 0.07959924, z: 0.74605346}
-  m_Center: {x: -0.0010801716, y: 0.0020007957, z: -0.014707461}
+  m_Size: {x: 0.00023206856, y: 0.0074605327, z: 0.0007959924}
+  m_Center: {x: -0.000010799833, y: 0.00014707385, z: 0.000020007023}
 --- !u!1 &1254114111
 GameObject:
   m_ObjectHideFlags: 0
@@ -10036,8 +10036,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2379371, y: 0.20211795, z: 0.25635687}
-  m_Center: {x: 0.0003846539, y: 0.07747993, z: 0.01286678}
+  m_Size: {x: 0.0023793732, y: 0.0025635706, z: 0.0020211805}
+  m_Center: {x: 0.000003844297, y: -0.00012866754, z: 0.00077480054}
 --- !u!1 &1411878641
 GameObject:
   m_ObjectHideFlags: 0
@@ -10719,8 +10719,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21024714, y: 0.5481982, z: 0.5963676}
-  m_Center: {x: 0.00012318057, y: -0.21738961, z: 0.009899752}
+  m_Size: {x: 0.0021024733, y: 0.0059636803, z: 0.0054819835}
+  m_Center: {x: 0.0000012307763, y: -0.000098998134, z: -0.0021738966}
 --- !u!1 &1587538506
 GameObject:
   m_ObjectHideFlags: 0
@@ -10927,8 +10927,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.05578359, y: 0.28791192, z: 0.40315083}
-  m_Center: {x: -0.00026411828, y: -0.13083771, z: -0.0024190396}
+  m_Size: {x: 0.00055783725, y: 0.004031509, z: 0.0028791209}
+  m_Center: {x: -0.0000026399614, y: 0.000024190536, z: -0.001308377}
 --- !u!1 &1640777952
 GameObject:
   m_ObjectHideFlags: 0
@@ -12358,8 +12358,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.20146014, y: 0.20146014, z: 0.26080728}
-  m_Center: {x: -0.00080552575, y: 0.0047063804, z: 0.08282893}
+  m_Size: {x: 0.0020146025, y: 0.0026080734, z: 0.0020146028}
+  m_Center: {x: -0.000008054301, y: -0.0008282897, z: 0.000047063986}
 --- !u!1 &2054870672
 GameObject:
   m_ObjectHideFlags: 0
@@ -12536,6 +12536,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDataGeneration
   templatePool:
   - {fileID: 11400000, guid: a01bac99b544ab246b40527d10e04efe, type: 2}
+  - {fileID: 11400000, guid: 0a010c8e92b54134ca53a616f082afe9, type: 2}
+  - {fileID: 11400000, guid: 82b61dd4b6e195e479aa058985a35c52, type: 2}
+  - {fileID: 11400000, guid: b131ba36cb1804246a5154996231d112, type: 2}
+  - {fileID: 11400000, guid: dd34fd2dcd40b5d478f1b44552a3536f, type: 2}
+  - {fileID: 11400000, guid: 36235969785920841839c546e3d1aea7, type: 2}
+  - {fileID: 11400000, guid: 368c736e7708bf2449bbb565ebbcc94f, type: 2}
+  - {fileID: 11400000, guid: 67a5030a01e5a6140833694a623c3c65, type: 2}
+  - {fileID: 11400000, guid: bf60f5caa72f08847a901aed146bc8d4, type: 2}
+  - {fileID: 11400000, guid: be14b1796771e7f49a8cdc0a0706b17d, type: 2}
+  - {fileID: 11400000, guid: ca43af7eb138e314e88ee454786a86b3, type: 2}
+  - {fileID: 11400000, guid: 45cec01bbbe554145895477e5bb6e5c4, type: 2}
   characterData: {fileID: 2054870675}
   appearanceApplier: {fileID: 2054870682}
 --- !u!114 &2054870685

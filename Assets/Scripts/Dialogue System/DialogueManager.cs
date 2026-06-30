@@ -48,8 +48,6 @@ public class DialogueManager : MonoBehaviour
         if (advance) NextDialogueLine();
     }
 
-    // ── Public entry points ─────────────────────────────────────────
-
     public void StartConversation(CharacterData character)
     {
         Debug.Log("Dialogue Started");
@@ -95,8 +93,6 @@ public class DialogueManager : MonoBehaviour
                 .OnComplete(() => SetBubbleInteractable(false)));
         }
     }
-
-    // ── Dialogue flow ───────────────────────────────────────────────
 
     void NextDialogueLine()
     {
@@ -163,8 +159,6 @@ public class DialogueManager : MonoBehaviour
         HideBubble(() => ResetState());
     }
 
-    // ── Show / hide ─────────────────────────────────────────────────
-
     void ShowBubble(System.Action onShown = null)
     {
         SetBubbleInteractable(true);
@@ -221,8 +215,6 @@ public class DialogueManager : MonoBehaviour
     }
 
     public CharacterData GetCurrentCharacter() => currentCharacter;
-
-    // ── Event subscriptions ─────────────────────────────────────────
 
     void OnEnable()
     {

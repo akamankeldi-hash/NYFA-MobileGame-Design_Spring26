@@ -21,7 +21,6 @@ public class HudManager : MonoBehaviour
     [SerializeField] private GameObject questioningWidget;
     [SerializeField] private GameObject characterModel;
     [SerializeField] private GameObject finalScoreWidget;
-
     [SerializeField] private GameObject bioBackground;
 
     private RectTransform bioWidgetTransform;
@@ -61,27 +60,29 @@ public class HudManager : MonoBehaviour
     public void SetNavLocked(bool locked)
     {
         navLocked = locked;
+        RefreshButtonStates();
+    }
 
-        bioButton.interactable = !locked;
-        questioningButton.interactable = !locked;
-        heavenButton.interactable = !locked && VerdictManager.instance.CanJudge();
-        if(heavenButton.interactable)
-        {
-            heavenButton.GetComponentInChildren<Image>().color = activeColor;
-        }
-        else
-        {
-            heavenButton.GetComponentInChildren<Image>().color = inactiveColor;
-        }
-        hellButton.interactable = !locked && VerdictManager.instance.CanJudge();
-        if(hellButton.interactable)
-        {
-            hellButton.GetComponentInChildren<Image>().color = activeColor;
-        }
-        else
-        {
-            hellButton.GetComponentInChildren<Image>().color = inactiveColor;
-        }
+    void RefreshButtonStates()
+    {
+        bool canJudge = VerdictManager.instance != null && VerdictManager.instance.CanJudge();
+
+        bioButton.interactable = !navLocked;
+        questioningButton.interactable = !navLocked;
+
+        bool verdictAllowed = !navLocked && canJudge;
+        heavenButton.interactable = verdictAllowed;
+        hellButton.interactable = verdictAllowed;
+
+        SetButtonColor(heavenButton, verdictAllowed);
+        SetButtonColor(hellButton, verdictAllowed);
+    }
+
+    void SetButtonColor(Button button, bool active)
+    {
+        var img = button.GetComponentInChildren<Image>();
+        if (img != null)
+            img.color = active ? activeColor : inactiveColor;
     }
 
     void OnBioButton()
@@ -89,17 +90,11 @@ public class HudManager : MonoBehaviour
         if (isAnimating || navLocked) return;
 
         if (currentState == HudState.BioOpen)
-        {
             ClosePanel(bioWidgetTransform, () => EnterInspect());
-        }
         else if (currentState == HudState.Questioning)
-        {
             ClosePanel(questioningWidgetTransform, () => OpenPanel(HudState.BioOpen, bioWidgetTransform));
-        }
         else
-        {
             OpenPanel(HudState.BioOpen, bioWidgetTransform);
-        }
     }
 
     void OnQuestioningButton()
@@ -107,28 +102,22 @@ public class HudManager : MonoBehaviour
         if (isAnimating || navLocked) return;
 
         if (currentState == HudState.Questioning)
-        {
             ClosePanel(questioningWidgetTransform, () => EnterInspect());
-        }
         else if (currentState == HudState.BioOpen)
-        {
             ClosePanel(bioWidgetTransform, () => OpenPanel(HudState.Questioning, questioningWidgetTransform));
-        }
         else
-        {
             OpenPanel(HudState.Questioning, questioningWidgetTransform);
-            bioBackground.SetActive(false);
-        }
     }
 
     void EnterInspect(bool instant = false)
     {
         currentState = HudState.Inspect;
+        isAnimating = false;
 
         inspectWidget.SetActive(true);
         characterModel.SetActive(true);
-        SetRotationEnabled(true);
         bioBackground.SetActive(true);
+        SetRotationEnabled(true);
 
         if (instant)
         {
@@ -144,11 +133,10 @@ public class HudManager : MonoBehaviour
 
         inspectWidget.SetActive(false);
         characterModel.SetActive(false);
+        bioBackground.SetActive(targetState == HudState.BioOpen);
         SetRotationEnabled(false);
 
-        panel.DOAnchorPosY(panelOpenY, openDuration)
-            .SetEase(Ease.OutBack)
-            .OnComplete(() => isAnimating = false);
+        panel.DOAnchorPosY(panelOpenY, openDuration).SetEase(Ease.OutBack).OnComplete(() => isAnimating = false);
     }
 
     void ClosePanel(RectTransform panel, System.Action onClosed)
@@ -164,10 +152,42 @@ public class HudManager : MonoBehaviour
             });
     }
 
+    public void ForceCloseAll()
+    {
+        bioWidgetTransform.DOKill();
+        questioningWidgetTransform.DOKill();
+
+        if (currentState == HudState.BioOpen || currentState == HudState.Questioning)
+        {
+            RectTransform active = currentState == HudState.BioOpen
+                ? bioWidgetTransform
+                : questioningWidgetTransform;
+
+            ClosePanel(active, () => EnterInspect());
+        }
+        else
+        {
+            EnterInspect();
+        }
+    }
+
+    public void ShowFinalScore(int score)
+    {
+        navLocked = true;
+        RefreshButtonStates();
+
+        bioButton.interactable = false;
+        questioningButton.interactable = false;
+
+        finalScoreWidget.SetActive(true);
+        var tmp = finalScoreWidget.GetComponentInChildren<TextMeshProUGUI>();
+        if (tmp != null)
+            tmp.text = "Final Score: " + score;
+    }
+
     void SetRotationEnabled(bool isEnabled)
     {
         if (inspectSystem == null) return;
-
         inspectSystem.ResetRotation();
         inspectSystem.enabled = isEnabled;
     }
@@ -185,22 +205,5 @@ public class HudManager : MonoBehaviour
     };
 
     public float GetPanelHiddenY() => panelHiddenY;
-
     public GameObject GetCharacterModel() => characterModel;
-
-    public void ForceCloseAll()
-    {
-        if (currentState == HudState.BioOpen)
-            ClosePanel(bioWidgetTransform, () => EnterInspect());
-        else if (currentState == HudState.Questioning)
-            ClosePanel(questioningWidgetTransform, () => EnterInspect());
-        else
-            EnterInspect();
-    }
-
-    public void ShowFinalScore(int score)
-    {
-        finalScoreWidget.SetActive(true);
-        finalScoreWidget.GetComponentInChildren<TextMeshProUGUI>().text = "Final Score: " + score;
-    }
 }

@@ -15,7 +15,6 @@ namespace TMPro
 
     public class TMP_Animated : TextMeshProUGUI
     {
-
         public float speed = 10;
         public EmotionEvent onEmotionChange;
         public ActionEvent onAction;
@@ -25,11 +24,8 @@ namespace TMPro
         public void ReadText(string newText)
         {
             text = string.Empty;
-            // split the whole text into parts based off the <> tags 
-            // even numbers in the array are text, odd numbers are tags
             string[] subTexts = newText.Split('<', '>');
 
-            // textmeshpro still needs to parse its built-in tags, so we only include noncustom tags
             string displayText = "";
             for (int i = 0; i < subTexts.Length; i++)
             {
@@ -38,13 +34,11 @@ namespace TMPro
                 else if (!isCustomTag(subTexts[i].Replace(" ", "")))
                     displayText += $"<{subTexts[i]}>";
             }
-            // check to see if a tag is our own
             bool isCustomTag(string tag)
             {
                 return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action");
             }
 
-            // send that string to textmeshpro and hide all of it, then start reading
             text = displayText;
             maxVisibleCharacters = 0;
             StartCoroutine(Read());
